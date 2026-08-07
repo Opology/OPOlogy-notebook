@@ -1,0 +1,4177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A local-first OPOlogy Lab Markdown outline notebook">
+  <meta name="theme-color" content="#002b5e">
+  <meta name="opology-build" content="complete-subject-2026-08-07-v8">
+  <title>OPOlogy COMPLETE Subject Notebook · V8</title>
+  <style>
+    :root {
+      --brand-dark: #002b5e;
+      --brand-blue: #005b9f;
+      --brand-teal: #0096a6;
+      --brand-cyan: #00c9a7;
+      --royal-blue: #002366;
+      --theorem-red: #fadbd8;
+      --theorem-red-frame: #e74c3c;
+      --remark-orange: #e67e22;
+      --bg-color: #f4f7fa;
+      --surface: #ffffff;
+      --surface-soft: #f8fafc;
+      --surface-teal: #eef9f8;
+      --text-main: #1e293b;
+      --text-light: #64748b;
+      --text-faint: #94a3b8;
+      --border: rgba(0, 43, 94, 0.11);
+      --gradient-flow: linear-gradient(-45deg, var(--brand-dark), var(--brand-blue), var(--brand-teal), var(--brand-cyan));
+      --gradient-card: linear-gradient(145deg, var(--brand-dark), var(--brand-blue), var(--brand-teal));
+      --shadow-sm: 0 6px 20px rgba(0, 43, 94, 0.06);
+      --shadow: 0 16px 40px rgba(0, 43, 94, 0.12);
+      --shadow-lg: 0 30px 60px rgba(0, 43, 94, 0.18);
+      --outline: 304px;
+      --topbar: 68px;
+      --radius-sm: 12px;
+      --radius: 20px;
+      --radius-lg: 30px;
+      --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow: hidden;
+      background: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-ui);
+      line-height: 1.65;
+    }
+    button, input, textarea { font: inherit; }
+    button { color: inherit; }
+    button, [role="button"] { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid var(--brand-cyan); outline-offset: 2px; }
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: -80px;
+      z-index: 200;
+      border-radius: 12px;
+      background: var(--surface);
+      padding: 12px 16px;
+      color: var(--brand-dark);
+      box-shadow: var(--shadow);
+    }
+    .skip-link:focus { top: 16px; }
+
+    .progress {
+      position: fixed;
+      inset: 0 0 auto var(--outline);
+      z-index: 110;
+      height: 3px;
+      background: rgba(0, 43, 94, 0.06);
+    }
+    .progress > span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--gradient-flow);
+      transition: width 180ms ease;
+    }
+
+    .outline {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 100;
+      display: grid;
+      grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+      width: var(--outline);
+      border-right: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 10px 0 32px rgba(0, 43, 94, 0.035);
+      backdrop-filter: blur(18px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 24px 22px 14px;
+      color: var(--brand-dark);
+      font-weight: 850;
+      letter-spacing: -0.03em;
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      border-radius: 13px;
+      background: var(--gradient-card);
+      color: white;
+      font-size: 0.75rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .brand-copy { min-width: 0; }
+    .brand-copy strong, .brand-copy small { display: block; }
+    .brand-copy small {
+      margin-top: -2px;
+      color: var(--text-light);
+      font-size: 0.68rem;
+      font-weight: 750;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .notebook-title {
+      width: calc(100% - 36px);
+      margin: 0 18px 14px;
+      border: 1px solid transparent;
+      border-radius: 11px;
+      background: transparent;
+      padding: 8px 10px;
+      color: var(--brand-dark);
+      font-size: 1.02rem;
+      font-weight: 760;
+      letter-spacing: -0.02em;
+    }
+    .notebook-title:hover, .notebook-title:focus {
+      border-color: var(--border);
+      background: var(--surface-soft);
+    }
+    .outline-tools {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 44px;
+      gap: 8px;
+      padding: 0 18px 14px;
+    }
+    .search-wrap { position: relative; }
+    .search-wrap svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      width: 16px;
+      transform: translateY(-50%);
+      color: var(--text-faint);
+      pointer-events: none;
+    }
+    .outline-search {
+      width: 100%;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface-soft);
+      padding: 0 12px 0 36px;
+      color: var(--text-main);
+      outline: none;
+    }
+    .outline-search:focus { border-color: var(--brand-teal); background: white; }
+    .icon-button, .plain-button, .toolbar-button, .mode-button {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      cursor: pointer;
+      transition: 180ms ease;
+    }
+    .icon-button {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      color: var(--brand-dark);
+      font-size: 1.25rem;
+      font-weight: 650;
+    }
+    .icon-button:hover, .plain-button:hover, .toolbar-button:hover, .mode-button:hover {
+      border-color: rgba(0, 150, 166, 0.35);
+      background: var(--surface-teal);
+      color: var(--brand-dark);
+    }
+    .outline-scroll {
+      min-height: 0;
+      overflow: auto;
+      padding: 2px 12px 18px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 91, 159, 0.22) transparent;
+    }
+    .outline-label {
+      margin: 8px 12px 10px;
+      color: var(--text-faint);
+      font-size: 0.7rem;
+      font-weight: 850;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .tree, .tree ul { margin: 0; padding: 0; list-style: none; }
+    .tree ul { margin-left: 16px; padding-left: 9px; border-left: 1px solid rgba(0, 43, 94, 0.09); }
+    .tree-node { margin: 2px 0; }
+    .tree-row {
+      display: grid;
+      grid-template-columns: 24px 16px minmax(0, 1fr) 30px;
+      align-items: center;
+      min-height: 39px;
+      position: relative;
+      border-radius: 10px;
+      color: var(--text-light);
+      cursor: grab;
+      user-select: none;
+      transition: background 140ms ease, box-shadow 140ms ease, opacity 140ms ease, transform 140ms ease;
+    }
+    .tree-row:hover { background: #f1f6f8; }
+    .tree-row.active {
+      background: #e7f5f4;
+      color: var(--brand-dark);
+      box-shadow: inset 3px 0 var(--brand-teal);
+    }
+    .tree-toggle, .tree-more, .tree-main {
+      border: 0;
+      background: transparent;
+    }
+    .tree-toggle, .tree-more { cursor: pointer; }
+    .tree-toggle {
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 32px;
+      padding: 0;
+      color: var(--text-faint);
+      font-size: 0.68rem;
+    }
+    .tree-toggle.empty { cursor: default; opacity: 0; }
+    .tree-main {
+      min-width: 0;
+      padding: 7px 4px;
+      overflow: hidden;
+      color: inherit;
+      text-align: left;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      cursor: grab;
+    }
+    .tree-main .node-kind {
+      display: inline-grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      margin-right: 6px;
+      border-radius: 6px;
+      background: rgba(0, 91, 159, 0.08);
+      color: var(--brand-blue);
+      font-size: 0.61rem;
+      font-weight: 900;
+      vertical-align: -1px;
+    }
+    .tree-row.active .node-kind { background: rgba(0, 150, 166, 0.13); color: var(--brand-dark); }
+    .tree-drag-handle {
+      display: grid;
+      width: 16px;
+      height: 30px;
+      place-items: center;
+      color: var(--text-faint);
+      font-size: 0.68rem;
+      letter-spacing: -0.28em;
+      cursor: grab;
+      opacity: 0.35;
+      touch-action: none;
+      user-select: none;
+    }
+    .tree-row:hover .tree-drag-handle { opacity: 0.9; }
+    .tree-row.dragging { opacity: 0.18; }
+    .tree-row.drop-inside {
+      background: #dff5f1;
+      box-shadow: inset 0 0 0 2px var(--brand-teal);
+    }
+    .tree-row.drop-before::before,
+    .tree-row.drop-after::after {
+      content: "";
+      position: absolute;
+      z-index: 5;
+      right: 5px;
+      left: 5px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--brand-cyan);
+      box-shadow: 0 0 0 2px white;
+    }
+    .tree-row.drop-before::before { top: -2px; }
+    .tree-row.drop-after::after { bottom: -2px; }
+    .tree-drop-placeholder {
+      position: relative;
+      height: 0;
+      margin: 0;
+      overflow: hidden;
+      border: 0 dashed rgba(0, 150, 166, 0.56);
+      border-radius: 10px;
+      background: rgba(0, 201, 167, 0.08);
+      color: var(--brand-dark);
+      opacity: 0;
+      transition: height 150ms cubic-bezier(.2,.8,.2,1), margin 150ms ease, opacity 120ms ease, border-width 120ms ease;
+    }
+    .tree-drop-placeholder.ready {
+      height: var(--drop-height, 42px);
+      margin: 4px 0;
+      border-width: 1px;
+      opacity: 1;
+    }
+    .tree-drop-placeholder::after {
+      content: attr(data-label);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      color: var(--brand-teal);
+      font-size: 0.68rem;
+      font-weight: 850;
+      letter-spacing: 0.02em;
+    }
+    .tree-drop-preview-list { min-height: 1px; }
+    .tree-node.drag-source-node {
+      pointer-events: none;
+      transition: height 150ms cubic-bezier(.2,.8,.2,1), margin 150ms ease, opacity 110ms ease;
+    }
+    .tree-drag-float {
+      position: fixed;
+      z-index: 260;
+      pointer-events: none;
+      border: 1px solid rgba(0, 150, 166, 0.36);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.98);
+      color: var(--brand-dark);
+      box-shadow: 0 24px 54px rgba(0, 43, 94, 0.24), 0 8px 18px rgba(0, 43, 94, 0.12);
+      opacity: 0.98;
+      transform: translate3d(0,0,0) rotate(0.6deg) scale(1.015);
+      will-change: left, top;
+    }
+    .tree-drag-float .tree-drag-handle { opacity: 1; }
+    .tree-drag-float .tree-more { opacity: 0.35; }
+    body.tree-pointer-dragging, body.tree-pointer-dragging * { cursor: grabbing !important; }
+    body.tree-pointer-dragging { user-select: none; }
+    .tree-more {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      color: var(--text-faint);
+      opacity: 0;
+    }
+    .tree-row:hover .tree-more, .tree-row:focus-within .tree-more { opacity: 1; }
+    .tree-more:hover { background: white; color: var(--brand-dark); }
+    .tree-empty {
+      margin: 20px 8px;
+      border: 1px dashed rgba(0, 91, 159, 0.25);
+      border-radius: 16px;
+      padding: 20px 14px;
+      color: var(--text-light);
+      text-align: center;
+      font-size: 0.86rem;
+    }
+    .tree-empty button { margin-top: 12px; }
+    .outline-footer {
+      border-top: 1px solid var(--border);
+      padding: 14px 18px 18px;
+      color: var(--text-light);
+      font-size: 0.72rem;
+      line-height: 1.45;
+    }
+    .build-stamp {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--brand-teal);
+      font-size: 0.64rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+    .outline-footer strong { color: var(--brand-dark); }
+
+    .mobile-toggle {
+      position: fixed;
+      top: 11px;
+      left: 12px;
+      z-index: 140;
+      display: none;
+      width: 46px;
+      height: 46px;
+      border: 0;
+      border-radius: 14px;
+      background: var(--brand-dark);
+      color: white;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+    .mobile-scrim {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: none;
+      background: rgba(0, 24, 52, 0.34);
+      backdrop-filter: blur(2px);
+    }
+
+    .app-shell {
+      min-height: 100vh;
+      margin-left: var(--outline);
+      transition: margin 220ms ease;
+    }
+    .topbar {
+      position: fixed;
+      inset: 0 0 auto var(--outline);
+      z-index: 80;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      height: var(--topbar);
+      border-bottom: 1px solid var(--border);
+      background: rgba(244, 247, 250, 0.9);
+      padding: 0 24px;
+      backdrop-filter: blur(18px);
+      transition: left 220ms ease;
+    }
+    .topbar-left { min-width: 0; }
+    .breadcrumb {
+      overflow: hidden;
+      color: var(--text-light);
+      font-size: 0.8rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .save-status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 2px;
+      color: var(--text-faint);
+      font-size: 0.72rem;
+    }
+    .save-status::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--brand-teal);
+      box-shadow: 0 0 0 3px rgba(0, 150, 166, 0.1);
+    }
+    .save-status.error { color: #a33a3a; }
+    .save-status.error::before { background: #d55353; box-shadow: 0 0 0 3px rgba(213, 83, 83, 0.1); }
+    .save-status.offline { color: #a96518; cursor: pointer; }
+    .save-status.offline::before { background: var(--remark-orange); box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.12); }
+    .topbar-actions { display: flex; align-items: center; gap: 9px; }
+    .mode-switch {
+      display: flex;
+      gap: 3px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 3px;
+    }
+    .mode-button {
+      min-height: 36px;
+      border: 0;
+      border-radius: 9px;
+      background: transparent;
+      padding: 0 12px;
+      color: var(--text-light);
+      font-size: 0.78rem;
+      font-weight: 720;
+    }
+    .mode-button.active { background: white; color: var(--brand-dark); box-shadow: var(--shadow-sm); }
+    .plain-button {
+      min-height: 42px;
+      padding: 0 13px;
+      color: var(--text-light);
+      font-size: 0.8rem;
+      font-weight: 720;
+    }
+    .plain-button.primary {
+      border-color: transparent;
+      background: var(--brand-dark);
+      color: white;
+    }
+    .plain-button.primary:hover { background: var(--brand-blue); color: white; }
+
+    .workspace {
+      height: 100vh;
+      padding-top: var(--topbar);
+      overflow: hidden;
+    }
+    .document {
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr) auto;
+      height: calc(100vh - var(--topbar));
+    }
+    .document-header {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 30px 0 20px;
+    }
+    .document-kicker {
+      color: var(--brand-teal);
+      font-size: 0.7rem;
+      font-weight: 850;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .document-title {
+      display: block;
+      width: 100%;
+      margin-top: 5px;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      color: var(--brand-dark);
+      font-size: clamp(2rem, 4vw, 4rem);
+      font-weight: 820;
+      line-height: 1.08;
+      letter-spacing: -0.055em;
+      outline: none;
+    }
+    .document-title::placeholder { color: #b3c0cd; }
+    .document-title:disabled { opacity: 0.42; }
+    .document-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin-top: 10px;
+      color: var(--text-faint);
+      font-size: 0.76rem;
+    }
+
+    .markdown-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: min(1180px, calc(100% - 48px));
+      min-height: 50px;
+      margin: 0 auto;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 15px 15px 0 0;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 7px;
+      scrollbar-width: thin;
+    }
+    .toolbar-button {
+      flex: 0 0 auto;
+      min-width: 36px;
+      height: 34px;
+      border-color: transparent;
+      border-radius: 9px;
+      background: transparent;
+      padding: 0 10px;
+      color: var(--text-light);
+      font-size: 0.76rem;
+      font-weight: 780;
+    }
+    .toolbar-button strong { color: var(--brand-dark); }
+    .toolbar-separator { width: 1px; height: 22px; flex: 0 0 1px; background: var(--border); }
+
+    .editor-section {
+      position: relative;
+      min-height: 0;
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+      border: 1px solid var(--border);
+      border-top: 0;
+      border-radius: 0 0 var(--radius) var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .image-drop-overlay {
+      position: absolute;
+      inset: 12px;
+      z-index: 20;
+      display: none;
+      place-items: center;
+      border: 2px dashed var(--brand-teal);
+      border-radius: 18px;
+      background: rgba(238, 249, 248, 0.94);
+      color: var(--brand-dark);
+      font-weight: 820;
+      letter-spacing: -0.02em;
+      pointer-events: none;
+    }
+    .editor-section.drag-image .image-drop-overlay { display: grid; }
+    .editor-grid { display: grid; grid-template-columns: 1fr 1fr; height: 100%; min-height: 0; }
+    .write-pane, .preview-pane { min-width: 0; min-height: 0; overflow: auto; }
+    .write-pane { border-right: 1px solid var(--border); background: #fbfdff; }
+    .markdown-editor {
+      display: block;
+      width: 100%;
+      min-height: 100%;
+      resize: none;
+      border: 0;
+      background: transparent;
+      padding: clamp(26px, 4vw, 52px);
+      color: #24364b;
+      font-family: var(--font-mono);
+      font-size: 0.96rem;
+      line-height: 1.75;
+      outline: none;
+      tab-size: 2;
+    }
+    .markdown-editor::placeholder { color: #a8b5c4; }
+    .markdown-editor:disabled { cursor: not-allowed; background: #f7f9fb; }
+    .preview-pane {
+      background: white;
+      padding: clamp(28px, 4vw, 58px);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 91, 159, 0.2) transparent;
+    }
+    .markdown-body {
+      width: min(800px, 100%);
+      margin: 0 auto;
+      color: var(--text-main);
+      font-size: clamp(1rem, 1.1vw, 1.12rem);
+      line-height: 1.76;
+    }
+    .markdown-body > :first-child { margin-top: 0; }
+    .markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4 {
+      color: var(--brand-dark);
+      line-height: 1.17;
+      letter-spacing: -0.035em;
+    }
+    .markdown-body h1 { margin: 0 0 0.6em; font-size: clamp(2.2rem, 5vw, 4.6rem); letter-spacing: -0.055em; }
+    .markdown-body h2 { margin: 2em 0 0.7em; font-size: clamp(1.7rem, 3.2vw, 2.8rem); }
+    .markdown-body h3 { margin: 1.7em 0 0.55em; font-size: 1.42rem; color: var(--brand-blue); }
+    .markdown-body h4 { margin: 1.5em 0 0.5em; font-size: 1.08rem; }
+    .markdown-body p { margin: 0.9em 0; }
+    .markdown-body strong { color: var(--brand-dark); }
+    .markdown-body a { color: var(--brand-blue); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .markdown-body mark { border-radius: 4px; background: #dff5ef; padding: 0.08em 0.2em; color: var(--brand-dark); }
+    .markdown-body hr { margin: 2.8rem 0; border: 0; border-top: 1px solid var(--border); }
+    .markdown-body ul, .markdown-body ol { margin: 1em 0; padding-left: 1.45em; }
+    .markdown-body li { margin: 0.35em 0; padding-left: 0.25em; }
+    .markdown-body blockquote {
+      margin: 1.5em 0;
+      border-left: 4px solid var(--brand-teal);
+      border-radius: 0 14px 14px 0;
+      background: var(--surface-teal);
+      padding: 16px 22px;
+      color: #345269;
+    }
+    .markdown-body code {
+      border-radius: 6px;
+      background: #edf3f7;
+      padding: 0.16em 0.38em;
+      color: #0b4d72;
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+    }
+    .markdown-body pre {
+      position: relative;
+      margin: 1.5em 0;
+      overflow: auto;
+      border-radius: 18px;
+      background: #102a43;
+      padding: 26px;
+      color: #e6f6ff;
+      box-shadow: var(--shadow-sm);
+    }
+    .markdown-body pre::before {
+      content: attr(data-language);
+      position: absolute;
+      top: 7px;
+      right: 12px;
+      color: #86a9bf;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .markdown-body pre code { background: transparent; padding: 0; color: inherit; }
+    .markdown-body table { width: 100%; margin: 1.6em 0; border-collapse: collapse; font-size: 0.94em; }
+    .markdown-body th, .markdown-body td { border-bottom: 1px solid var(--border); padding: 12px 14px; text-align: left; }
+    .markdown-body th { background: #edf6f7; color: var(--brand-dark); font-weight: 800; }
+    .markdown-body .task-list { padding-left: 0; list-style: none; }
+    .markdown-body .task-list input { width: 17px; height: 17px; margin: 0 9px 0 0; accent-color: var(--brand-teal); vertical-align: -3px; }
+    .markdown-image {
+      --image-width: 80%;
+      width: min(var(--image-width), 100%);
+      margin-top: 1.8em;
+      margin-bottom: 1.8em;
+    }
+    .markdown-image.align-left { margin-left: 0; margin-right: auto; }
+    .markdown-image.align-center { margin-left: auto; margin-right: auto; }
+    .markdown-image.align-right { margin-left: auto; margin-right: 0; }
+    .markdown-image.align-full { width: 100%; margin-left: 0; margin-right: 0; }
+    .markdown-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid rgba(0, 43, 94, 0.1);
+      border-radius: 18px;
+      background: var(--surface-soft);
+      box-shadow: var(--shadow);
+    }
+    .markdown-image figcaption {
+      margin-top: 10px;
+      color: var(--text-light);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .markdown-image.image-missing {
+      border: 1px dashed rgba(0, 91, 159, 0.3);
+      border-radius: 16px;
+      background: var(--surface-soft);
+      padding: 24px;
+      color: var(--text-light);
+      text-align: center;
+    }
+    .math-display {
+      margin: 1.6em 0;
+      overflow-x: auto;
+      border-radius: 15px;
+      background: #eef6f8;
+      padding: 22px;
+      color: var(--brand-dark);
+      text-align: center;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.25rem;
+    }
+    .math-inline { color: var(--brand-dark); font-family: Georgia, "Times New Roman", serif; }
+
+    /* OPOlogy Academic Textbook mathematical environments */
+    .math-block {
+      --block-frame: var(--brand-blue);
+      --block-title: var(--brand-blue);
+      --block-bg: #fff;
+      --block-wash: rgba(0, 91, 159, 0.075);
+      position: relative;
+      margin: 2.25em 0 1.7em;
+      border: 1px solid var(--block-frame);
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at 94% 4%, var(--block-wash) 0, transparent 33%),
+        linear-gradient(150deg, var(--block-bg), white 72%);
+      padding: 0 26px 24px;
+      box-shadow: 0 16px 38px rgba(0, 43, 94, 0.09), inset 0 1px rgba(255, 255, 255, 0.8);
+      break-inside: avoid;
+    }
+    .math-block-title {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      max-width: calc(100% - 8px);
+      margin: -17px 0 12px -10px;
+      border: 1px solid var(--block-frame);
+      border-radius: 9px 9px 9px 3px;
+      background: var(--block-title);
+      padding: 6px 12px;
+      color: white;
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+      box-shadow: 0 7px 16px var(--block-wash);
+    }
+    .math-block-content { position: relative; }
+    .math-block-content > :first-child { margin-top: 0; }
+    .math-block-content > :last-child { margin-bottom: 0; }
+    .math-block.axiom { --block-frame: var(--brand-blue); --block-title: var(--brand-blue); --block-wash: rgba(0, 91, 159, 0.075); }
+    .math-block.theorem {
+      --block-frame: var(--theorem-red-frame);
+      --block-title: var(--theorem-red-frame);
+      --block-bg: color-mix(in srgb, var(--theorem-red) 30%, white);
+      --block-wash: rgba(231, 76, 60, 0.08);
+    }
+    .math-block.theorem .math-block-content,
+    .math-block.lemma .math-block-content,
+    .math-block.corollary .math-block-content,
+    .math-block.proposition .math-block-content { font-style: italic; }
+    .math-block.definition { --block-frame: #007c89; --block-title: var(--brand-teal); --block-wash: rgba(0, 150, 166, 0.075); }
+    .math-block.lemma { --block-frame: #337cb2; --block-title: #337cb2; --block-wash: rgba(51, 124, 178, 0.075); }
+    .math-block.corollary { --block-frame: #7fb0d2; --block-title: #4f91bd; --block-wash: rgba(79, 145, 189, 0.075); }
+    .math-block.proposition { --block-frame: var(--brand-dark); --block-title: var(--brand-dark); --block-wash: rgba(0, 43, 94, 0.075); }
+    .math-block.algorithm { --block-frame: var(--brand-teal); --block-title: var(--brand-teal); --block-wash: rgba(0, 150, 166, 0.075); }
+    .math-block.example {
+      --block-frame: #007c89;
+      margin-top: 1.7em;
+      border-width: 1px 1px 1px 20px;
+      border-radius: 0;
+      background: #f2fbfa;
+      padding: 18px 24px 20px;
+      box-shadow: 0 14px 34px rgba(0, 150, 166, 0.08);
+    }
+    .math-block.example .math-block-title,
+    .math-block.remark .math-block-title,
+    .math-block.concept .math-block-title {
+      display: block;
+      min-height: 0;
+      margin: 0 0 10px;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      color: var(--block-title);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .math-block.remark {
+      --block-frame: var(--remark-orange);
+      --block-title: var(--remark-orange);
+      margin-top: 1.6em;
+      border-width: 0 0 0 4px;
+      border-radius: 0;
+      padding: 14px 20px;
+      font-size: 0.9em;
+      box-shadow: 0 12px 28px rgba(230, 126, 34, 0.07);
+    }
+    .math-block.concept {
+      --block-frame: var(--brand-cyan);
+      --block-title: var(--brand-teal);
+      margin-top: 1.7em;
+      border-width: 3px 1px 1px 4px;
+      border-radius: 0;
+      padding: 18px 22px 20px;
+      box-shadow: 0 14px 32px rgba(0, 201, 167, 0.08);
+    }
+    .math-block.concept .math-block-title {
+      border-bottom: 1px solid var(--brand-cyan);
+      padding-bottom: 9px;
+    }
+    .math-block.exercise {
+      --block-frame: var(--brand-dark);
+      --block-title: var(--brand-dark);
+      margin-top: 2.6em;
+      padding-top: 8px;
+      --block-wash: rgba(0, 43, 94, 0.075);
+    }
+    .math-block.exercise .math-block-title {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      justify-content: center;
+      margin-left: 0;
+    }
+    .proof-block {
+      position: relative;
+      margin: 1.45em 0;
+      padding: 4px 2px 20px;
+    }
+    .proof-name { color: var(--brand-dark); font-weight: 850; }
+    .proof-block.solution .proof-name { color: var(--brand-blue); }
+    .proof-content > :first-child { margin-top: 0.35em; }
+    .proof-content > :last-child { margin-bottom: 0; }
+    .qed {
+      position: absolute;
+      right: 2px;
+      bottom: 0;
+      color: var(--brand-dark);
+      font-size: 0.9rem;
+    }
+    .proof-block.solution .qed { color: var(--brand-teal); }
+
+    .opo-block {
+      margin: 1.65em 0;
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--brand-teal);
+      border-radius: 18px;
+      background: var(--surface);
+      padding: 24px 26px;
+      box-shadow: var(--shadow-sm);
+    }
+    .opo-block .block-label {
+      margin-bottom: 8px;
+      color: var(--brand-teal);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .opo-block > h3 { margin: 0 0 0.55em; color: var(--brand-dark); }
+    .opo-block.definition { background: #f7fbfd; }
+    .opo-block.theorem { border-left-color: var(--brand-blue); background: #f4f8fc; }
+    .opo-block.theorem .block-label { color: var(--brand-blue); }
+    .opo-block.example { border-left-color: #46a68f; background: #f4fbf8; }
+    .opo-block.note { border-left-color: #7d8da3; background: #f8fafc; }
+    .opo-block.warning { border-left-color: #d28a2f; background: #fff9ee; }
+    .opo-block.takeaway {
+      border: 0;
+      background: var(--gradient-card);
+      color: white;
+      box-shadow: var(--shadow-lg);
+    }
+    .opo-block.takeaway .block-label, .opo-block.takeaway h3, .opo-block.takeaway strong { color: white; }
+    .opo-block.takeaway a { color: white; }
+    .opo-layout {
+      display: grid;
+      gap: 18px;
+      margin: 1.7em 0;
+    }
+    .opo-layout.columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .opo-layout.bento { grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); }
+    .opo-layout > article {
+      min-width: 0;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--surface);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+    .opo-layout > article > :first-child { margin-top: 0; }
+    .preview-empty {
+      display: grid;
+      min-height: 100%;
+      place-items: center;
+      color: var(--text-faint);
+      text-align: center;
+    }
+    .preview-empty div { max-width: 320px; }
+    .preview-empty .empty-mark {
+      display: grid;
+      place-items: center;
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 16px;
+      border-radius: 20px;
+      background: var(--surface-teal);
+      color: var(--brand-teal);
+      font-size: 1.25rem;
+      font-weight: 850;
+    }
+
+    .document-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      width: min(1180px, calc(100% - 48px));
+      min-height: 48px;
+      margin: 0 auto;
+      color: var(--text-faint);
+      font-size: 0.72rem;
+    }
+    .document-footer strong { color: var(--text-light); }
+
+    .no-document {
+      display: none;
+      place-items: center;
+      height: calc(100vh - var(--topbar));
+      padding: 32px;
+      text-align: center;
+    }
+    .no-document.visible { display: grid; }
+    .no-document-card {
+      width: min(480px, 100%);
+      border: 1px dashed rgba(0, 91, 159, 0.28);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.75);
+      padding: 42px;
+    }
+    .no-document h2 { margin: 0; color: var(--brand-dark); font-size: 2rem; letter-spacing: -0.04em; }
+    .no-document p { color: var(--text-light); }
+
+    .menu-popover {
+      position: fixed;
+      z-index: 180;
+      display: none;
+      min-width: 210px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.98);
+      padding: 6px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      max-height: min(540px, calc(100vh - 16px));
+      overflow: auto;
+    }
+    .menu-popover.open { display: block; }
+    .menu-popover button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      min-height: 38px;
+      border: 0;
+      border-radius: 9px;
+      background: transparent;
+      padding: 0 10px;
+      color: var(--text-main);
+      text-align: left;
+      cursor: pointer;
+    }
+    .menu-popover button:hover { background: var(--surface-teal); color: var(--brand-dark); }
+    .menu-popover button span { color: var(--text-faint); font-size: 0.68rem; font-weight: 650; }
+    .menu-popover button.danger { color: #b34040; }
+    .menu-popover button[hidden] { display: none; }
+    .menu-separator { height: 1px; margin: 5px 4px; background: var(--border); }
+
+    dialog {
+      width: min(460px, calc(100% - 32px));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: white;
+      padding: 0;
+      color: var(--text-main);
+      box-shadow: var(--shadow-lg);
+    }
+    dialog::backdrop { background: rgba(0, 24, 52, 0.35); backdrop-filter: blur(3px); }
+    .dialog-body { padding: 28px; }
+    .dialog-body h2 { margin: 0; color: var(--brand-dark); font-size: 1.55rem; letter-spacing: -0.035em; }
+    .dialog-body p { margin: 6px 0 20px; color: var(--text-light); font-size: 0.9rem; }
+    .dialog-body label { display: block; margin-bottom: 7px; color: var(--brand-dark); font-size: 0.78rem; font-weight: 800; }
+    .dialog-body input[type="text"] {
+      width: 100%;
+      height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0 14px;
+      color: var(--text-main);
+      outline: none;
+    }
+    .dialog-body input[type="text"]:focus, .dialog-body select:focus { border-color: var(--brand-teal); box-shadow: 0 0 0 3px rgba(0, 150, 166, 0.1); }
+    .move-dialog { width: min(560px, calc(100% - 32px)); }
+    .move-field { margin-top: 16px; }
+    .move-field select {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: white;
+      padding: 0 13px;
+      color: var(--text-main);
+      outline: none;
+    }
+    .move-route {
+      margin: 18px 0 4px;
+      border-left: 4px solid var(--brand-teal);
+      border-radius: 0 12px 12px 0;
+      background: var(--surface-teal);
+      padding: 12px 14px;
+      color: var(--brand-dark);
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+    .move-confirm-copy { margin-bottom: 8px !important; }
+    .undo-toast {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 190;
+      display: flex;
+      max-width: min(430px, calc(100% - 32px));
+      align-items: center;
+      gap: 14px;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 16px;
+      background: var(--brand-dark);
+      padding: 12px 13px 12px 17px;
+      color: white;
+      box-shadow: var(--shadow-lg);
+      font-size: 0.8rem;
+    }
+    .undo-toast[hidden] { display: none; }
+    .undo-toast button {
+      flex: 0 0 auto;
+      min-height: 38px;
+      border: 1px solid rgba(255,255,255,0.24);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.1);
+      padding: 0 13px;
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .undo-toast button:hover { background: rgba(255,255,255,0.18); }
+    .image-dialog { width: min(620px, calc(100% - 32px)); }
+    .image-drop-zone {
+      display: grid;
+      min-height: 126px;
+      place-items: center;
+      margin-bottom: 20px;
+      border: 2px dashed rgba(0, 150, 166, 0.36);
+      border-radius: 18px;
+      background: var(--surface-teal);
+      padding: 20px;
+      color: var(--brand-dark);
+      text-align: center;
+      cursor: pointer;
+    }
+    .image-drop-zone.dragging { border-color: var(--brand-teal); background: #e4f6f3; }
+    .image-drop-zone strong, .image-drop-zone small { display: block; }
+    .image-drop-zone small { margin-top: 5px; color: var(--text-light); }
+    .image-dialog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .image-field label { display: block; margin-bottom: 7px; color: var(--brand-dark); font-size: 0.78rem; font-weight: 800; }
+    .image-field input[type="text"], .image-field select {
+      width: 100%;
+      height: 46px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: white;
+      padding: 0 13px;
+      color: var(--text-main);
+      outline: none;
+    }
+    .image-size-row { display: grid; grid-template-columns: 1fr 56px; align-items: center; gap: 10px; min-height: 46px; }
+    .image-size-row input[type="range"] { width: 100%; accent-color: var(--brand-teal); }
+    .image-size-output { color: var(--brand-dark); font-size: 0.82rem; font-weight: 800; text-align: right; }
+    .image-dialog-preview {
+      display: none;
+      max-height: 210px;
+      margin: 18px auto 0;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      object-fit: contain;
+      box-shadow: var(--shadow-sm);
+    }
+    .image-dialog-preview.visible { display: block; }
+    .image-help { margin-top: 14px !important; font-size: 0.76rem !important; }
+    .dialog-actions { display: flex; justify-content: flex-end; gap: 9px; margin-top: 22px; }
+
+    /* Continuous subject lecture page */
+    .subject-document {
+      grid-template-rows: auto minmax(0, 1fr) auto;
+    }
+    .subject-toolbar {
+      position: relative;
+      z-index: 30;
+      width: min(1180px, calc(100% - 48px));
+      margin-top: 14px;
+      border-radius: 15px;
+      box-shadow: var(--shadow-sm);
+    }
+    .subject-scroll {
+      min-height: 0;
+      overflow: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 91, 159, 0.22) transparent;
+    }
+    .subject-canvas {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 30px 0 96px;
+    }
+    .subject-hero {
+      display: flex;
+      min-height: min(72vh, 760px);
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 88px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, white 0%, #f7fbfd 68%, #e8f6f4 100%);
+      padding: clamp(42px, 8vw, 104px);
+      box-shadow: var(--shadow);
+      scroll-margin-top: 24px;
+    }
+    .subject-hero::before {
+      content: "";
+      width: 76px;
+      height: 6px;
+      margin-bottom: 28px;
+      border-radius: 999px;
+      background: var(--gradient-flow);
+    }
+    .node-eyebrow {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      color: var(--brand-teal);
+      font-size: 0.76rem;
+      font-weight: 850;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      outline: none;
+    }
+    .subject-title-input, .course-title-input, .chapter-title-input, .section-title-input,
+    .node-subtitle-input {
+      width: 100%;
+      resize: none;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      color: var(--brand-dark);
+      outline: none;
+      overflow: hidden;
+    }
+    .subject-title-input {
+      margin-top: 14px;
+      font-size: clamp(3.4rem, 8vw, 7.2rem);
+      font-weight: 850;
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+    }
+    .node-subtitle-input {
+      margin-top: 24px;
+      color: var(--text-light);
+      font-size: clamp(1.1rem, 2vw, 1.55rem);
+      line-height: 1.55;
+    }
+    .subject-hint {
+      margin-top: 34px;
+      color: var(--text-faint);
+      font-size: 0.78rem;
+    }
+    .course-page {
+      margin: 0 0 104px;
+      scroll-margin-top: 26px;
+    }
+    .course-opening {
+      min-height: 42vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      margin-bottom: 54px;
+      border-radius: var(--radius-lg);
+      background: var(--gradient-card);
+      padding: clamp(38px, 7vw, 82px);
+      color: white;
+      box-shadow: var(--shadow-lg);
+    }
+    .course-opening .node-eyebrow { color: #aee8e7; }
+    .course-title-input {
+      margin-top: 12px;
+      color: white;
+      font-size: clamp(2.6rem, 6vw, 5.5rem);
+      font-weight: 840;
+      line-height: 1.02;
+      letter-spacing: -0.055em;
+    }
+    .course-opening .node-subtitle-input { color: rgba(255,255,255,0.78); }
+    .chapter-page {
+      margin: 0 0 76px;
+      padding-top: 24px;
+      scroll-margin-top: 24px;
+    }
+    .chapter-heading {
+      margin-bottom: 34px;
+      border-top: 4px solid var(--brand-blue);
+      padding-top: 26px;
+    }
+    .chapter-title-input {
+      margin-top: 8px;
+      font-size: clamp(2.3rem, 5vw, 4.5rem);
+      font-weight: 830;
+      line-height: 1.05;
+      letter-spacing: -0.052em;
+    }
+    .section-card {
+      margin: 0 0 46px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      scroll-margin-top: 24px;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+    .section-card.active {
+      border-color: rgba(0, 150, 166, 0.48);
+      box-shadow: 0 18px 50px rgba(0, 91, 159, 0.12);
+    }
+    .section-heading {
+      padding: 30px clamp(24px, 5vw, 54px) 24px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+    }
+    .section-title-input {
+      margin-top: 4px;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 820;
+      line-height: 1.12;
+      letter-spacing: -0.042em;
+    }
+    .section-heading .node-subtitle-input { margin-top: 8px; font-size: 1rem; }
+    .section-editor-card { position: relative; }
+    .section-editor-card.drag-image .image-drop-overlay { display: grid; }
+    .section-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .section-write, .section-preview { min-width: 0; }
+    .section-write { border-right: 1px solid var(--border); background: #fbfdff; }
+    .section-editor {
+      display: block;
+      width: 100%;
+      min-height: 360px;
+      resize: vertical;
+      border: 0;
+      background: transparent;
+      padding: clamp(28px, 4vw, 52px);
+      color: #24364b;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      outline: none;
+      tab-size: 2;
+    }
+    .section-preview {
+      min-height: 360px;
+      padding: clamp(30px, 4vw, 54px);
+      background: white;
+    }
+    .section-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--text-faint);
+      font-size: 0.7rem;
+    }
+    .empty-level {
+      margin: 22px 0 54px;
+      border: 1px dashed rgba(0, 91, 159, 0.25);
+      border-radius: 18px;
+      padding: 28px;
+      color: var(--text-light);
+      text-align: center;
+    }
+    /* Read-only website HTML export */
+    body.reader-mode .subject-toolbar,
+    body.reader-mode .section-write,
+    body.reader-mode .section-meta,
+    body.reader-mode .document-footer,
+    body.reader-mode .subject-hint,
+    body.reader-mode .outline-tools,
+    body.reader-mode .outline-footer,
+    body.reader-mode .tree-more,
+    body.reader-mode .tree-drag-handle,
+    body.reader-mode .undo-toast,
+    body.reader-mode .backup-label,
+    body.reader-mode #backupButton,
+    body.reader-mode .mode-switch { display: none !important; }
+    body.reader-mode .document { grid-template-rows: minmax(0, 1fr); }
+    body.reader-mode .section-grid { grid-template-columns: 1fr; }
+    body.reader-mode .section-preview { display: block !important; min-height: 420px; }
+    body.reader-mode .node-eyebrow,
+    body.reader-mode [data-node-field] { pointer-events: none; }
+    body.reader-mode .reader-title { margin-bottom: 0; }
+    body.reader-mode .reader-subtitle { white-space: pre-wrap; }
+    body.reader-mode .notebook-title { pointer-events: none; }
+    body.reader-mode .tree-toggle.empty { visibility: hidden; }
+    body.reader-mode .tree-row { grid-template-columns: 24px minmax(0, 1fr) 30px; }
+    body.reader-mode .section-card { cursor: default; }
+
+    body[data-mode="write"] .section-grid { grid-template-columns: 1fr; }
+    body[data-mode="write"] .section-preview { display: none; }
+    body[data-mode="preview"] .section-grid { grid-template-columns: 1fr; }
+    body[data-mode="preview"] .section-write { display: none; }
+    body[data-mode="preview"] .subject-toolbar { opacity: 0.55; pointer-events: none; }
+
+    body[data-mode="write"] .editor-grid { grid-template-columns: 1fr; }
+    body[data-mode="write"] .preview-pane { display: none; }
+    body[data-mode="preview"] .editor-grid { grid-template-columns: 1fr; }
+    body[data-mode="preview"] .write-pane { display: none; }
+    body[data-mode="preview"] .markdown-toolbar { opacity: 0.55; pointer-events: none; }
+    body.focus-mode .outline, body.hide-outline .outline { transform: translateX(-105%); }
+    body.focus-mode .app-shell, body.hide-outline .app-shell { margin-left: 0; }
+    body.focus-mode .topbar, body.hide-outline .topbar { left: 0; }
+    body.focus-mode .progress, body.hide-outline .progress { left: 0; }
+
+    @media (max-width: 980px) {
+      .mode-button { padding: 0 9px; }
+      .focus-label, .backup-label { display: none; }
+    }
+    @media (max-width: 860px) {
+      body { overflow: hidden; }
+      .outline { width: min(326px, 88vw); transform: translateX(-105%); transition: transform 220ms ease; }
+      .outline.open { transform: none; }
+      .mobile-scrim.open { display: block; }
+      .mobile-toggle { display: grid; place-items: center; }
+      .app-shell { margin-left: 0; }
+      .topbar { left: 0; padding: 0 12px 0 68px; }
+      .progress { left: 0; }
+      .breadcrumb { max-width: 220px; }
+      .save-status { display: none; }
+      .plain-button { padding: 0 10px; }
+      .tree-more { opacity: 1; }
+      .tree-drag-handle { opacity: 0.55; }
+      .document-header, .markdown-toolbar, .editor-section, .document-footer { width: calc(100% - 28px); }
+      .subject-canvas { width: calc(100% - 28px); padding-top: 18px; }
+      .document-header { padding-top: 22px; }
+      .editor-grid { grid-template-columns: 1fr; }
+      .section-grid { grid-template-columns: 1fr; }
+      body[data-mode="split"] .section-write { border-right: 0; border-bottom: 1px solid var(--border); }
+      .subject-hero { min-height: 62vh; margin-bottom: 56px; padding: 38px 28px; }
+      .course-opening { min-height: 34vh; padding: 38px 28px; }
+      .course-page { margin-bottom: 68px; }
+      body[data-mode="split"] .write-pane { border-right: 0; border-bottom: 1px solid var(--border); }
+      body[data-mode="split"] .write-pane, body[data-mode="split"] .preview-pane { min-height: 50vh; }
+      .opo-layout.columns { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      :root { --topbar: 62px; }
+      .topbar-actions { gap: 5px; }
+      .mode-switch .mode-button[data-mode="split"] { display: none; }
+      .plain-button[data-action="focus"] { display: none; }
+      body:not(.reader-mode) #printButton { display: none; }
+      .document-header { padding-bottom: 14px; }
+      .document-title { font-size: 2.1rem; }
+      .markdown-editor, .preview-pane { padding: 24px 20px; }
+      .subject-title-input { font-size: 3rem; }
+      .course-title-input { font-size: 2.55rem; }
+      .chapter-title-input { font-size: 2.3rem; }
+      .section-editor, .section-preview { min-height: 300px; padding: 24px 20px; }
+      .section-heading { padding: 24px 20px 20px; }
+      .document-footer { min-height: 42px; }
+      .document-footer .storage-note { display: none; }
+      .image-dialog-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+    }
+    @page { size: A4; margin: 18mm 16mm 20mm; }
+    @media print {
+      body { overflow: visible; background: white; }
+      .outline, .topbar, .mobile-toggle, .mobile-scrim, .progress, .markdown-toolbar, .write-pane, .section-write, .document-footer, .skip-link, .menu-popover, dialog, .subject-hint, .undo-toast { display: none !important; }
+      .app-shell { margin: 0; }
+      .workspace { height: auto; overflow: visible; padding: 0; }
+      .document { display: block; height: auto; }
+      .subject-scroll { overflow: visible; }
+      .subject-canvas { width: 100%; padding: 0; }
+      .subject-hero {
+        min-height: 245mm;
+        margin: 0;
+        break-after: page;
+        border: 0;
+        background: white;
+        padding: 20mm 5mm;
+        box-shadow: none;
+      }
+      .course-opening {
+        min-height: 0;
+        margin: 0 0 14mm;
+        break-before: page;
+        border: 0;
+        border-bottom: 1.5pt solid var(--brand-blue);
+        border-radius: 0;
+        background: white;
+        padding: 12mm 0 9mm;
+        color: var(--text-main);
+        box-shadow: none;
+      }
+      .course-opening .node-eyebrow { color: var(--brand-teal); }
+      .course-opening .course-title-input { color: var(--brand-dark); }
+      .course-opening .node-subtitle-input { color: var(--text-light); }
+      .course-page { margin: 0; }
+      .chapter-page { margin: 0; break-before: page; }
+      .chapter-heading {
+        display: block;
+        min-height: 0;
+        margin: 0 0 10mm;
+        border: 0;
+        border-bottom: 1pt solid #cbd5e1;
+        border-radius: 0;
+        background: white;
+        padding: 8mm 0 6mm;
+        box-shadow: none;
+      }
+      .section-card { margin: 0 0 10mm; break-inside: auto; border: 0; border-radius: 0; box-shadow: none; overflow: visible; }
+      .section-heading { padding: 0 0 5mm; border-bottom: 1pt solid #dbe4ec; background: white; }
+      .section-grid { display: block; }
+      .section-preview { display: block !important; min-height: 0; padding: 6mm 0 0; }
+      .section-meta { display: none !important; }
+      .subject-title-input { font-size: 44pt; }
+      .course-title-input { font-size: 30pt; }
+      .chapter-title-input { font-size: 25pt; }
+      .section-title-input { font-size: 18pt; }
+      .node-subtitle-input { color: var(--text-light) !important; }
+      .document-header, .editor-section { width: 100%; margin: 0; border: 0; box-shadow: none; }
+      .document-header { padding: 16px 0 24px; }
+      .editor-grid { display: block; height: auto; }
+      .preview-pane { display: block !important; overflow: visible; padding: 0; }
+      .markdown-body { width: 100%; max-width: none; }
+      .math-block, .proof-block, .opo-block, .opo-layout > article, pre, table { break-inside: avoid; box-shadow: none; }
+      a { color: inherit !important; text-decoration: none !important; }
+    }
+  </style>
+</head>
+<body data-mode="split">
+  <a class="skip-link" href="#subjectCanvas">Skip to subject</a>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+  <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open notebook outline" aria-expanded="false">☰</button>
+  <div class="mobile-scrim" id="mobileScrim" aria-hidden="true"></div>
+
+  <nav class="outline" id="outline" aria-label="Notebook outline">
+    <div class="brand">
+      <span class="brand-mark">OPO</span>
+      <span class="brand-copy"><strong>OPOlogy Lab</strong><small>Outline Notebook</small></span>
+    </div>
+    <input class="notebook-title" id="notebookTitle" aria-label="Notebook title" value="" placeholder="Untitled Notebook">
+    <div class="outline-tools">
+      <label class="search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+        <input class="outline-search" id="outlineSearch" type="search" placeholder="Search outline" aria-label="Search outline">
+      </label>
+      <button class="icon-button" id="addSubjectButton" type="button" title="Add subject" aria-label="Add subject">+</button>
+    </div>
+    <div class="outline-scroll">
+      <p class="outline-label">Subjects · Courses · Chapters · Sections</p>
+      <ul class="tree" id="outlineTree"></ul>
+    </div>
+    <div class="outline-footer">
+      <span class="build-stamp">COMPLETE SUBJECT BUILD · 2026-08-07 · V8</span>
+      <strong>Press and drag any row.</strong> A floating card and live gap show exactly where it will go. Touch devices drag from the ⠿ handle. Every confirmed move is disk-autosaved.
+    </div>
+  </nav>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="breadcrumb" id="breadcrumb">Untitled Notebook</div>
+        <div class="save-status" id="saveStatus" title="Click to reconnect the local autosave API">Ready</div>
+      </div>
+      <div class="topbar-actions">
+        <div class="mode-switch" aria-label="Editor view">
+          <button class="mode-button" type="button" data-mode="write">Write</button>
+          <button class="mode-button active" type="button" data-mode="split">Split</button>
+          <button class="mode-button" type="button" data-mode="preview">Preview</button>
+        </div>
+        <button class="plain-button" id="focusButton" type="button" data-action="focus" title="Focus mode · F">◎ <span class="focus-label">Focus</span></button>
+        <button class="plain-button" id="printButton" type="button" title="Traditional paper PDF">Print / PDF</button>
+        <button class="plain-button primary" id="backupButton" type="button" aria-haspopup="menu" aria-expanded="false">↓ <span class="backup-label">Backup</span></button>
+      </div>
+    </header>
+
+    <main class="workspace" id="content">
+      <div class="document subject-document" id="documentView">
+        <section class="markdown-toolbar subject-toolbar" id="formatting-tools" data-title="Formatting tools" aria-label="Markdown formatting toolbar">
+          <button class="toolbar-button" type="button" data-format="heading" title="Heading"><strong>H2</strong></button>
+          <button class="toolbar-button" type="button" data-format="bold" title="Bold"><strong>B</strong></button>
+          <button class="toolbar-button" type="button" data-format="italic" title="Italic"><em>I</em></button>
+          <button class="toolbar-button" type="button" data-format="link" title="Link">Link</button>
+          <button class="toolbar-button" type="button" data-format="list" title="Bullet list">List</button>
+          <button class="toolbar-button" type="button" data-format="task" title="Task">Task</button>
+          <button class="toolbar-button" type="button" data-format="formula" title="Display formula">∑</button>
+          <button class="toolbar-button" id="imageButton" type="button" title="Insert a local image">Image</button>
+          <div class="toolbar-separator" aria-hidden="true"></div>
+          <button class="toolbar-button" id="mathBlockButton" type="button" aria-haspopup="menu" aria-expanded="false"><strong>Maths Block</strong> ▾</button>
+          <div class="toolbar-separator" aria-hidden="true"></div>
+          <button class="toolbar-button" type="button" data-format="columns">2 Columns</button>
+          <button class="toolbar-button" type="button" data-format="bento">Bento</button>
+          <button class="toolbar-button" type="button" data-format="table">Table</button>
+          <button class="toolbar-button" type="button" data-format="code">Code</button>
+        </section>
+
+        <div class="subject-scroll" id="subjectScroll">
+          <div class="subject-canvas" id="subjectCanvas" aria-live="polite"></div>
+        </div>
+
+        <section class="document-footer" id="document-footer" data-title="Document status">
+          <span id="wordCount"><strong>0</strong> words · <strong>0</strong> characters in subject</span>
+          <span class="storage-note">Entire subject · continuous editable page</span>
+        </section>
+      </div>
+
+      <section class="no-document" id="noDocument" data-title="Blank notebook" aria-live="polite">
+        <div class="no-document-card">
+          <h2>Blank notebook</h2>
+          <p>Add a subject, then create courses, chapters, and sections. The entire subject will appear as one continuous editable lecture page.</p>
+          <button class="plain-button primary" id="emptyAddSubject" type="button">Create first subject</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="menu-popover" id="nodeMenu" role="menu" aria-label="Outline item actions">
+    <button type="button" data-node-action="add-child">Add child <span id="childTypeLabel"></span></button>
+    <button type="button" data-node-action="add-sibling">Add sibling</button>
+    <button type="button" data-node-action="rename">Rename</button>
+    <button type="button" data-node-action="duplicate">Duplicate</button>
+    <button type="button" data-node-action="move">Move to… (precise)</button>
+    <div class="menu-separator"></div>
+    <button class="danger" type="button" data-node-action="delete">Delete</button>
+  </div>
+
+  <div class="menu-popover" id="mathBlockMenu" role="menu" aria-label="Mathematical block types">
+    <button type="button" data-math-block="axiom">Axiom <span>Blue box</span></button>
+    <button type="button" data-math-block="theorem">Theorem <span>Red box</span></button>
+    <button type="button" data-math-block="definition">Definition <span>Teal box</span></button>
+    <button type="button" data-math-block="lemma">Lemma <span>Mid blue</span></button>
+    <button type="button" data-math-block="corollary">Corollary <span>Light blue</span></button>
+    <button type="button" data-math-block="proposition">Proposition <span>Dark blue</span></button>
+    <div class="menu-separator"></div>
+    <button type="button" data-math-block="example">Example <span>Teal bar</span></button>
+    <button type="button" data-math-block="remark">Remark <span>Orange bar</span></button>
+    <button type="button" data-math-block="concept">Concept <span>Cyan frame</span></button>
+    <button type="button" data-math-block="algorithm">Algorithm <span>Teal box</span></button>
+    <button type="button" data-math-block="exercise">Exercise <span>Dark tab</span></button>
+    <div class="menu-separator"></div>
+    <button type="button" data-math-block="proof">Proof <span>■</span></button>
+    <button type="button" data-math-block="solution">Solution <span>■</span></button>
+  </div>
+
+  <div class="menu-popover" id="backupMenu" role="menu" aria-label="Backup and file actions">
+    <button type="button" data-backup-action="reader-html">Export lecture website <span>.html</span></button>
+    <button type="button" data-backup-action="html">Save editable HTML <span>.html</span></button>
+    <button type="button" data-backup-action="json">Download data backup <span>.json</span></button>
+    <button type="button" data-backup-action="markdown">Export all Markdown <span>.md</span></button>
+    <div class="menu-separator"></div>
+    <button type="button" data-backup-action="import-json">Open data backup</button>
+    <button type="button" data-backup-action="import-markdown">Import Markdown to section</button>
+    <button type="button" data-backup-action="print">Print / Save PDF</button>
+    <div class="menu-separator"></div>
+    <button class="danger" type="button" data-backup-action="new">New blank notebook</button>
+  </div>
+
+  <dialog class="image-dialog" id="imageDialog">
+    <form class="dialog-body" id="imageForm" method="dialog">
+      <h2>Insert image</h2>
+      <p>The image is embedded inside the notebook, so the saved HTML remains portable.</p>
+      <label class="image-drop-zone" id="imageDialogDropZone" for="imageFileInput">
+        <span><strong id="imageFileLabel">Choose or drop an image</strong><small>PNG, JPG/JPEG, WebP, GIF, SVG, AVIF, or another browser-readable image</small></span>
+        <input id="imageFileInput" type="file" accept="image/*,.png,.jpg,.jpeg,.webp,.gif,.svg,.avif" hidden>
+      </label>
+      <div class="image-dialog-grid">
+        <div class="image-field">
+          <label for="imageAltInput">Alt text</label>
+          <input id="imageAltInput" type="text" maxlength="240" placeholder="Describe the image">
+        </div>
+        <div class="image-field">
+          <label for="imageCaptionInput">Caption</label>
+          <input id="imageCaptionInput" type="text" maxlength="300" placeholder="Optional caption">
+        </div>
+        <div class="image-field">
+          <label for="imageWidthInput">Width</label>
+          <div class="image-size-row"><input id="imageWidthInput" type="range" min="20" max="100" step="5" value="80"><output class="image-size-output" id="imageWidthOutput">80%</output></div>
+        </div>
+        <div class="image-field">
+          <label for="imageAlignInput">Alignment</label>
+          <select id="imageAlignInput"><option value="center">Center</option><option value="left">Left</option><option value="right">Right</option><option value="full">Full width</option></select>
+        </div>
+      </div>
+      <img class="image-dialog-preview" id="imageDialogPreview" alt="Selected image preview">
+      <p class="image-help">After insertion, move the image by moving its Markdown line. Change <code>width=80%</code> or <code>align=center</code> directly in the tag.</p>
+      <div class="dialog-actions">
+        <button class="plain-button" type="button" id="imageCancel">Cancel</button>
+        <button class="plain-button primary" type="submit" id="imageInsertButton">Insert image</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="nameDialog">
+    <form class="dialog-body" id="nameForm" method="dialog">
+      <h2 id="nameDialogTitle">Name item</h2>
+      <p id="nameDialogDescription">Choose a clear name for this outline item.</p>
+      <label for="nameInput">Name</label>
+      <input id="nameInput" type="text" maxlength="140" autocomplete="off">
+      <div class="dialog-actions">
+        <button class="plain-button" type="button" id="nameCancel">Cancel</button>
+        <button class="plain-button primary" type="submit">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="move-dialog" id="moveDialog">
+    <form class="dialog-body" id="moveForm" method="dialog">
+      <h2 id="moveDialogTitle">Move outline item</h2>
+      <p id="moveDialogDescription">Choose a valid destination and exact position.</p>
+      <div class="move-route" id="moveRoutePreview">—</div>
+      <div class="move-field">
+        <label for="moveParentSelect">Destination</label>
+        <select id="moveParentSelect"></select>
+      </div>
+      <div class="move-field">
+        <label for="movePositionSelect">Position</label>
+        <select id="movePositionSelect"></select>
+      </div>
+      <div class="dialog-actions">
+        <button class="plain-button" type="button" id="moveCancel">Cancel</button>
+        <button class="plain-button primary" type="submit">Review move</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="move-dialog" id="moveConfirmDialog">
+    <form class="dialog-body" id="moveConfirmForm" method="dialog">
+      <h2 id="moveConfirmTitle">Move this item?</h2>
+      <p class="move-confirm-copy">Nothing changes until you confirm.</p>
+      <div class="move-route" id="moveConfirmRoute">—</div>
+      <div class="dialog-actions">
+        <button class="plain-button" type="button" id="moveConfirmCancel">Cancel</button>
+        <button class="plain-button primary" type="submit">Confirm move</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="undo-toast" id="moveUndoToast" hidden role="status" aria-live="polite">
+    <span id="moveUndoMessage">Item moved and autosaved.</span>
+    <button type="button" id="moveUndoButton">Undo move</button>
+  </div>
+
+  <input id="jsonInput" type="file" accept="application/json,.json" hidden>
+  <input id="markdownInput" type="file" accept="text/markdown,text/plain,.md,.markdown,.txt" hidden>
+
+  <script id="opology-embedded-data" type="application/json">null</script>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+      startup: { typeset: false }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    (() => {
+      'use strict';
+
+      const $ = (selector, root = document) => root.querySelector(selector);
+      const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+      const uid = (prefix = 'id') => `${prefix}-${globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`}`;
+      const nowISO = () => new Date().toISOString();
+      const deepCopy = value => JSON.parse(JSON.stringify(value));
+      const typeOrder = ['subject', 'course', 'chapter', 'section'];
+      const childType = type => typeOrder[typeOrder.indexOf(type) + 1] || null;
+      const parentType = { subject: null, course: 'subject', chapter: 'course', section: 'chapter' };
+      const ROOT_PARENT_ID = '__notebook_root__';
+      const typeNames = { subject: 'Subject', course: 'Course', chapter: 'Chapter', section: 'Section' };
+      const typeMarks = { subject: 'S', course: 'C', chapter: 'Ch', section: '§' };
+      const defaultNames = { subject: 'Untitled Subject', course: 'Untitled Course', chapter: 'Untitled Chapter', section: 'Untitled Section' };
+      const mathCounterTypes = ['axiom', 'theorem', 'definition', 'lemma', 'corollary', 'example', 'remark', 'concept', 'algorithm', 'exercise', 'proposition'];
+      const LAST_STATE_KEY = 'opology-outline-notebook:last-state';
+      const requestedAPI = new URLSearchParams(location.search).get('api');
+      const sameOriginAPI = /^https?:$/i.test(location.protocol) ? location.origin : null;
+      const API_ORIGIN = requestedAPI && /^https?:\/\/(?:localhost|127\.0\.0\.1|\[::1\]|(?:\d{1,3}\.){3}\d{1,3})(?::\d+)?$/i.test(requestedAPI)
+        ? requestedAPI.replace(/\/$/, '')
+        : (sameOriginAPI || 'http://127.0.0.1:9000');
+      const API_LOAD = `${API_ORIGIN}/load`;
+      const API_SAVE = `${API_ORIGIN}/save`;
+      const READER_MODE = document.body.classList.contains('reader-mode');
+
+      function makeNode(type, title = defaultNames[type]) {
+        const node = { id: uid(type), type, title, subtitle: '', expanded: true };
+        if (type === 'subject') node.eyebrow = 'OPOLOGY SUBJECT';
+        if (type === 'section') {
+          node.markdown = '';
+          node.updatedAt = null;
+        } else {
+          node.children = [];
+        }
+        return node;
+      }
+
+      function makeBlankState(withSkeleton = true) {
+        const state = {
+          schema: 'opology-outline-notebook',
+          version: 4,
+          id: uid('notebook'),
+          title: 'Untitled Notebook',
+          createdAt: nowISO(),
+          updatedAt: nowISO(),
+          activeSubjectId: null,
+          activeNodeId: null,
+          activeSectionId: null,
+          settings: { mode: 'split', scrollPositions: {} },
+          assets: {},
+          tree: []
+        };
+        if (withSkeleton) {
+          const subject = makeNode('subject');
+          const course = makeNode('course');
+          const chapter = makeNode('chapter');
+          const section = makeNode('section');
+          chapter.children.push(section);
+          course.children.push(chapter);
+          subject.children.push(course);
+          state.tree.push(subject);
+          state.activeSubjectId = subject.id;
+          state.activeNodeId = subject.id;
+          state.activeSectionId = section.id;
+        }
+        return state;
+      }
+
+      function normalizeState(candidate) {
+        if (!candidate || typeof candidate !== 'object' || !Array.isArray(candidate.tree)) return makeBlankState();
+        const normalized = candidate;
+        normalized.schema = 'opology-outline-notebook';
+        normalized.version = 4;
+        normalized.id ||= uid('notebook');
+        normalized.title ||= 'Untitled Notebook';
+        normalized.createdAt ||= nowISO();
+        normalized.updatedAt ||= nowISO();
+        normalized.settings ||= { mode: 'split', scrollPositions: {} };
+        normalized.assets ||= {};
+        walkCandidate(normalized.tree, node => {
+          node.subtitle ||= '';
+          if (node.type === 'subject') node.eyebrow ||= 'OPOLOGY SUBJECT';
+          if (node.type === 'section') {
+            node.markdown ||= '';
+            node.updatedAt ||= null;
+          } else node.children ||= [];
+        });
+        const firstSubjectNode = normalized.tree.find(node => node.type === 'subject') || null;
+        normalized.activeNodeId ||= normalized.activeSectionId || normalized.activeSubjectId;
+        normalized.activeSubjectId = subjectInCandidate(normalized.tree, normalized.activeNodeId || normalized.activeSectionId)?.id
+          || normalized.activeSubjectId
+          || firstSubjectNode?.id
+          || null;
+        if (!['write', 'split', 'preview'].includes(normalized.settings.mode)) normalized.settings.mode = 'split';
+        if (!normalized.settings.scrollPositions
+          || typeof normalized.settings.scrollPositions !== 'object'
+          || Array.isArray(normalized.settings.scrollPositions)) normalized.settings.scrollPositions = {};
+        return normalized;
+      }
+
+      function walkCandidate(nodes, callback) {
+        (nodes || []).forEach(node => {
+          callback(node);
+          if (node.children) walkCandidate(node.children, callback);
+        });
+      }
+
+      function subjectInCandidate(nodes, targetId, currentSubject = null) {
+        for (const node of nodes || []) {
+          const subject = node.type === 'subject' ? node : currentSubject;
+          if (node.id === targetId) return subject;
+          const nested = subjectInCandidate(node.children, targetId, subject);
+          if (nested) return nested;
+        }
+        return null;
+      }
+
+      function readEmbeddedState() {
+        try {
+          const raw = $('#opology-embedded-data').textContent.trim();
+          return raw && raw !== 'null' ? normalizeState(JSON.parse(raw)) : null;
+        } catch (error) {
+          console.warn('Could not read embedded notebook data.', error);
+          return null;
+        }
+      }
+
+      const embeddedState = readEmbeddedState();
+      const localCandidates = embeddedState ? [{ state: embeddedState, source: 'embedded' }] : [];
+      if (!READER_MODE) {
+        try {
+          const stableStored = localStorage.getItem(LAST_STATE_KEY);
+          if (stableStored) localCandidates.push({ state: normalizeState(JSON.parse(stableStored)), source: 'browser' });
+          if (embeddedState?.id) {
+            const legacyStored = localStorage.getItem(`opology-outline-notebook:${embeddedState.id}`);
+            if (legacyStored) localCandidates.push({ state: normalizeState(JSON.parse(legacyStored)), source: 'legacy-browser' });
+          }
+        } catch (error) {
+          console.warn('Browser storage is unavailable.', error);
+        }
+      }
+      localCandidates.sort((a, b) => Date.parse(b.state.updatedAt || 0) - Date.parse(a.state.updatedAt || 0));
+      let hasPersistedLocalState = localCandidates.length > 0;
+      let state = localCandidates[0]?.state || makeBlankState();
+      let storageKey = `opology-outline-notebook:${state.id}`;
+
+      let activeMenuNodeId = null;
+      let draggingNodeId = null;
+      let currentDrop = null;
+      let pointerDrag = null;
+      let treeDropPlaceholder = null;
+      let treeDragFloat = null;
+      let suppressTreeClickUntil = 0;
+      let moveDialogNodeId = null;
+      let pendingMoveOperation = null;
+      let lastMoveUndo = null;
+      let moveUndoTimer = null;
+      let moveCommitInProgress = false;
+      let saveTimer = null;
+      let scrollSaveTimer = null;
+      let scrollRestoreToken = 0;
+      let restoringScroll = false;
+      let apiSaveTimer = null;
+      let apiRetryTimer = null;
+      let apiReady = false;
+      let apiOnline = false;
+      let apiSaving = false;
+      let apiSaveQueued = false;
+      let apiRevision = 0;
+      let renderTimer = null;
+      let scrollSpyFrame = null;
+      let fileHandle = null;
+      let nameSubmitHandler = null;
+      let pendingImageFile = null;
+      let imageInsertSelection = null;
+      let imageInsertSectionId = null;
+      let imagePreviewURL = null;
+      let clientId = uid('client');
+      try {
+        clientId = sessionStorage.getItem('opology-client-id') || clientId;
+        sessionStorage.setItem('opology-client-id', clientId);
+      } catch (error) {
+        console.warn('Session identity is unavailable.', error);
+      }
+
+      const elements = {
+        body: document.body,
+        outline: $('#outline'),
+        mobileToggle: $('#mobileToggle'),
+        mobileScrim: $('#mobileScrim'),
+        notebookTitle: $('#notebookTitle'),
+        outlineSearch: $('#outlineSearch'),
+        outlineTree: $('#outlineTree'),
+        addSubjectButton: $('#addSubjectButton'),
+        emptyAddSubject: $('#emptyAddSubject'),
+        breadcrumb: $('#breadcrumb'),
+        saveStatus: $('#saveStatus'),
+        documentView: $('#documentView'),
+        noDocument: $('#noDocument'),
+        subjectScroll: $('#subjectScroll'),
+        subjectCanvas: $('#subjectCanvas'),
+        wordCount: $('#wordCount'),
+        progressBar: $('#progressBar'),
+        nodeMenu: $('#nodeMenu'),
+        childTypeLabel: $('#childTypeLabel'),
+        mathBlockButton: $('#mathBlockButton'),
+        mathBlockMenu: $('#mathBlockMenu'),
+        imageButton: $('#imageButton'),
+        imageDialog: $('#imageDialog'),
+        imageForm: $('#imageForm'),
+        imageDialogDropZone: $('#imageDialogDropZone'),
+        imageFileInput: $('#imageFileInput'),
+        imageFileLabel: $('#imageFileLabel'),
+        imageAltInput: $('#imageAltInput'),
+        imageCaptionInput: $('#imageCaptionInput'),
+        imageWidthInput: $('#imageWidthInput'),
+        imageWidthOutput: $('#imageWidthOutput'),
+        imageAlignInput: $('#imageAlignInput'),
+        imageDialogPreview: $('#imageDialogPreview'),
+        imageInsertButton: $('#imageInsertButton'),
+        imageCancel: $('#imageCancel'),
+        backupButton: $('#backupButton'),
+        backupMenu: $('#backupMenu'),
+        jsonInput: $('#jsonInput'),
+        markdownInput: $('#markdownInput'),
+        nameDialog: $('#nameDialog'),
+        nameForm: $('#nameForm'),
+        nameDialogTitle: $('#nameDialogTitle'),
+        nameDialogDescription: $('#nameDialogDescription'),
+        nameInput: $('#nameInput'),
+        nameCancel: $('#nameCancel'),
+        printButton: $('#printButton'),
+        moveDialog: $('#moveDialog'),
+        moveForm: $('#moveForm'),
+        moveDialogTitle: $('#moveDialogTitle'),
+        moveDialogDescription: $('#moveDialogDescription'),
+        moveRoutePreview: $('#moveRoutePreview'),
+        moveParentSelect: $('#moveParentSelect'),
+        movePositionSelect: $('#movePositionSelect'),
+        moveCancel: $('#moveCancel'),
+        moveConfirmDialog: $('#moveConfirmDialog'),
+        moveConfirmForm: $('#moveConfirmForm'),
+        moveConfirmTitle: $('#moveConfirmTitle'),
+        moveConfirmRoute: $('#moveConfirmRoute'),
+        moveConfirmCancel: $('#moveConfirmCancel'),
+        moveUndoToast: $('#moveUndoToast'),
+        moveUndoMessage: $('#moveUndoMessage'),
+        moveUndoButton: $('#moveUndoButton')
+      };
+
+      function walk(nodes, callback, parent = null, ancestors = []) {
+        for (let index = 0; index < nodes.length; index += 1) {
+          const node = nodes[index];
+          const result = callback(node, { parent, siblings: nodes, index, ancestors });
+          if (result !== undefined) return result;
+          if (node.children) {
+            const childResult = walk(node.children, callback, node, [...ancestors, node]);
+            if (childResult !== undefined) return childResult;
+          }
+        }
+        return undefined;
+      }
+
+      function locate(id) {
+        return walk(state.tree, (node, info) => node.id === id ? { node, ...info } : undefined);
+      }
+
+      function firstSection() {
+        return walk(state.tree, node => node.type === 'section' ? node : undefined) || null;
+      }
+
+      function firstSubject() {
+        return state.tree.find(node => node.type === 'subject') || null;
+      }
+
+      function subjectForNode(nodeId) {
+        const found = nodeId ? locate(nodeId) : null;
+        if (!found) return null;
+        if (found.node.type === 'subject') return found.node;
+        return found.ancestors.find(node => node.type === 'subject') || null;
+      }
+
+      function activeSubject() {
+        const direct = state.activeSubjectId ? locate(state.activeSubjectId)?.node : null;
+        if (direct?.type === 'subject') return direct;
+        const inferred = subjectForNode(state.activeNodeId || state.activeSectionId) || firstSubject();
+        state.activeSubjectId = inferred?.id || null;
+        return inferred;
+      }
+
+      function activeSection() {
+        const located = state.activeSectionId ? locate(state.activeSectionId) : null;
+        if (located?.node.type === 'section') return located.node;
+        const first = firstSection();
+        state.activeSectionId = first?.id || null;
+        return first;
+      }
+
+      function activePath() {
+        const located = state.activeSectionId ? locate(state.activeSectionId) : null;
+        return located ? [...located.ancestors, located.node] : [];
+      }
+
+      function outlinePath(nodeId) {
+        const found = locate(nodeId);
+        return found ? [...found.ancestors, found.node].map(node => node.title).join(' / ') : '';
+      }
+
+      function nodesOfType(type) {
+        const nodes = [];
+        walk(state.tree, node => { if (node.type === type) nodes.push(node); });
+        return nodes;
+      }
+
+      function nodeContains(root, targetId) {
+        if (!root) return false;
+        if (root.id === targetId) return true;
+        return Boolean(root.children?.some(child => nodeContains(child, targetId)));
+      }
+
+      function destinationChildren(nodeType, destinationParentId) {
+        if (nodeType === 'subject') return destinationParentId === ROOT_PARENT_ID ? state.tree : null;
+        const parent = locate(destinationParentId)?.node;
+        if (!parent || parent.type !== parentType[nodeType]) return null;
+        parent.children ||= [];
+        return parent.children;
+      }
+
+      function clearMoveUndo() {
+        clearTimeout(moveUndoTimer);
+        moveUndoTimer = null;
+        lastMoveUndo = null;
+        elements.moveUndoToast.hidden = true;
+      }
+
+      function captureMoveUndo() {
+        clearMoveUndo();
+        lastMoveUndo = {
+          tree: deepCopy(state.tree),
+          activeSubjectId: state.activeSubjectId,
+          activeNodeId: state.activeNodeId,
+          activeSectionId: state.activeSectionId
+        };
+      }
+
+      function showMoveUndo(message) {
+        if (!lastMoveUndo) return;
+        clearTimeout(moveUndoTimer);
+        elements.moveUndoMessage.textContent = `${message} · Autosaved`;
+        elements.moveUndoToast.hidden = false;
+        moveUndoTimer = setTimeout(clearMoveUndo, 15000);
+      }
+
+      function finishOutlineMove(node, message) {
+        const moveMessage = message || `${typeNames[node.type]} moved`;
+        captureCurrentViewPosition();
+        state.activeNodeId = node.id;
+        if (node.type === 'section') state.activeSectionId = node.id;
+        const destinationSubject = subjectForNode(node.id);
+        state.activeSubjectId = destinationSubject?.id || firstSubject()?.id || null;
+        renderAll();
+        moveCommitInProgress = true;
+        try {
+          persist(true);
+        } finally {
+          moveCommitInProgress = false;
+        }
+        setStatus(`${moveMessage} · autosaved`);
+        showMoveUndo(moveMessage);
+        requestAnimationFrame(() => scrollToNode(node.id));
+      }
+
+      function moveNodeRelative(sourceId, targetId, mode) {
+        if (sourceId === targetId || !['before', 'after', 'inside'].includes(mode)) return false;
+        const source = locate(sourceId);
+        const target = locate(targetId);
+        if (!source || !target) return false;
+        if (nodeContains(source.node, targetId)) return false;
+        const validRelative = (mode === 'inside' && parentType[source.node.type] === target.node.type)
+          || (mode !== 'inside' && source.node.type === target.node.type);
+        if (!validRelative) return false;
+
+        const movingNode = source.node;
+        captureMoveUndo();
+        source.siblings.splice(source.index, 1);
+        const refreshedTarget = locate(targetId);
+        if (!refreshedTarget) {
+          source.siblings.splice(Math.min(source.index, source.siblings.length), 0, movingNode);
+          clearMoveUndo();
+          return false;
+        }
+        let destination;
+        let insertIndex;
+        if (mode === 'inside') {
+          refreshedTarget.node.children ||= [];
+          refreshedTarget.node.expanded = true;
+          destination = refreshedTarget.node.children;
+          insertIndex = destination.length;
+        } else {
+          destination = refreshedTarget.siblings;
+          insertIndex = refreshedTarget.index + (mode === 'after' ? 1 : 0);
+        }
+        destination.splice(insertIndex, 0, movingNode);
+        finishOutlineMove(movingNode, `${typeNames[movingNode.type]} moved ${mode === 'inside' ? `into ${refreshedTarget.node.title}` : `${mode} ${refreshedTarget.node.title}`}`);
+        return true;
+      }
+
+      function moveNodeToParent(sourceId, destinationParentId, position) {
+        const source = locate(sourceId);
+        if (!source) return false;
+        const nodeType = source.node.type;
+        const intendedDestination = destinationChildren(nodeType, destinationParentId);
+        if (!intendedDestination) return false;
+        if (destinationParentId !== ROOT_PARENT_ID && nodeContains(source.node, destinationParentId)) return false;
+
+        const anchorMatch = String(position || '').match(/^(before|after):(.+)$/);
+        if (anchorMatch) {
+          const anchor = locate(anchorMatch[2]);
+          if (!anchor || anchor.node.type !== nodeType || anchor.node.id === sourceId) return false;
+          const anchorParentId = anchor.parent?.id || ROOT_PARENT_ID;
+          if (anchorParentId !== destinationParentId) return false;
+        }
+
+        const movingNode = source.node;
+        captureMoveUndo();
+        source.siblings.splice(source.index, 1);
+        const destination = destinationChildren(nodeType, destinationParentId);
+        if (!destination) {
+          source.siblings.splice(Math.min(source.index, source.siblings.length), 0, movingNode);
+          clearMoveUndo();
+          return false;
+        }
+        let insertIndex = destination.length;
+        if (position === 'start') insertIndex = 0;
+        if (anchorMatch) {
+          const anchor = locate(anchorMatch[2]);
+          if (!anchor) {
+            source.siblings.splice(Math.min(source.index, source.siblings.length), 0, movingNode);
+            clearMoveUndo();
+            return false;
+          }
+          insertIndex = anchor.index + (anchorMatch[1] === 'after' ? 1 : 0);
+        }
+        destination.splice(Math.max(0, Math.min(insertIndex, destination.length)), 0, movingNode);
+        const destinationName = destinationParentId === ROOT_PARENT_ID ? 'notebook root' : locate(destinationParentId)?.node.title;
+        if (destinationParentId !== ROOT_PARENT_ID) locate(destinationParentId).node.expanded = true;
+        finishOutlineMove(movingNode, `${typeNames[nodeType]} moved to ${destinationName}`);
+        return true;
+      }
+
+      function setStatus(message, kind = 'ok') {
+        const normalizedKind = kind === true ? 'error' : (kind || 'ok');
+        elements.saveStatus.textContent = message;
+        elements.saveStatus.classList.toggle('error', normalizedKind === 'error');
+        elements.saveStatus.classList.toggle('offline', normalizedKind === 'offline');
+      }
+
+      function saveLocalSnapshot(markPersisted = true) {
+        try {
+          localStorage.setItem(LAST_STATE_KEY, JSON.stringify(state));
+          if (markPersisted) hasPersistedLocalState = true;
+          return true;
+        } catch (error) {
+          console.warn(error);
+          return false;
+        }
+      }
+
+      function captureCurrentViewPosition() {
+        if (READER_MODE || restoringScroll || !elements.subjectScroll) return false;
+        const subject = activeSubject();
+        if (!subject) return false;
+        state.settings.scrollPositions ||= {};
+        state.settings.scrollPositions[subject.id] = Math.max(0, Math.round(elements.subjectScroll.scrollTop || 0));
+        return true;
+      }
+
+      function saveCurrentViewPosition(immediate = false) {
+        if (!captureCurrentViewPosition()) return;
+        clearTimeout(scrollSaveTimer);
+        const save = () => {
+          state.updatedAt = nowISO();
+          saveLocalSnapshot();
+          scheduleAPISave(false);
+        };
+        if (immediate) save();
+        else scrollSaveTimer = setTimeout(save, 220);
+      }
+
+      function restoreCurrentViewPosition(subjectId) {
+        const token = ++scrollRestoreToken;
+        if (READER_MODE) {
+          elements.subjectScroll.scrollTop = 0;
+          return;
+        }
+        const rawPosition = state.settings.scrollPositions?.[subjectId];
+        const hasSavedPosition = Number.isFinite(Number(rawPosition));
+        const savedPosition = hasSavedPosition ? Math.max(0, Number(rawPosition)) : 0;
+        const activeNodeId = state.activeNodeId;
+        restoringScroll = true;
+
+        const applyPosition = () => {
+          if (token !== scrollRestoreToken) return;
+          const maximum = Math.max(0, elements.subjectScroll.scrollHeight - elements.subjectScroll.clientHeight);
+          if (hasSavedPosition) {
+            elements.subjectScroll.scrollTop = Math.min(savedPosition, maximum);
+          } else if (activeNodeId && activeNodeId !== subjectId) {
+            const target = document.getElementById(`node-${activeNodeId}`);
+            if (target) {
+              const paneTop = elements.subjectScroll.getBoundingClientRect().top;
+              const targetTop = target.getBoundingClientRect().top;
+              elements.subjectScroll.scrollTop = Math.max(0, Math.min(maximum, elements.subjectScroll.scrollTop + targetTop - paneTop - 12));
+            }
+          } else {
+            elements.subjectScroll.scrollTop = 0;
+          }
+          updateProgress();
+        };
+
+        requestAnimationFrame(() => {
+          applyPosition();
+          setTimeout(() => {
+            if (token !== scrollRestoreToken) return;
+            applyPosition();
+            restoringScroll = false;
+          }, 140);
+        });
+      }
+
+      function scheduleAPIRetry() {
+        clearTimeout(apiRetryTimer);
+        apiRetryTimer = setTimeout(() => {
+          if (apiReady && !apiOnline) void saveStateToAPI();
+        }, 5000);
+      }
+
+      function scheduleAPISave(immediate = false) {
+        if (!apiReady) return;
+        clearTimeout(apiSaveTimer);
+        if (immediate) void saveStateToAPI();
+        else apiSaveTimer = setTimeout(() => void saveStateToAPI(), 550);
+      }
+
+      async function saveStateToAPI() {
+        if (!apiReady) return false;
+        if (apiSaving) {
+          apiSaveQueued = true;
+          return false;
+        }
+        apiSaving = true;
+        apiSaveQueued = false;
+        const payload = JSON.stringify({ data: state, clientId, baseRevision: apiRevision });
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 15000);
+        try {
+          setStatus('Saving to disk API…');
+          const response = await fetch(API_SAVE, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: payload,
+            cache: 'no-store',
+            signal: controller.signal
+          });
+          if (!response.ok) throw new Error(`API save failed (${response.status})`);
+          const result = await response.json();
+          apiRevision = Number(result.revision ?? apiRevision);
+          apiOnline = true;
+          clearTimeout(apiRetryTimer);
+          setStatus(`Disk autosaved ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`);
+          return true;
+        } catch (error) {
+          console.warn('Local API save unavailable; browser fallback remains active.', error);
+          apiOnline = false;
+          setStatus('Browser saved · API offline (click to reconnect)', 'offline');
+          scheduleAPIRetry();
+          return false;
+        } finally {
+          clearTimeout(timeout);
+          apiSaving = false;
+          if (apiSaveQueued) {
+            apiSaveQueued = false;
+            scheduleAPISave(true);
+          }
+        }
+      }
+
+      function persist(immediate = false) {
+        if (READER_MODE) return;
+        if (lastMoveUndo && !moveCommitInProgress) clearMoveUndo();
+        state.updatedAt = nowISO();
+        hasPersistedLocalState = true;
+        setStatus('Saving…');
+        clearTimeout(saveTimer);
+        const save = () => {
+          const localSaved = saveLocalSnapshot();
+          if (!localSaved && !apiOnline) setStatus('Autosave unavailable — start the API or download a backup', 'error');
+          else if (!apiOnline) setStatus('Browser autosaved · API offline', 'offline');
+          scheduleAPISave(immediate);
+        };
+        if (immediate) save(); else saveTimer = setTimeout(save, 280);
+      }
+
+      async function initializeAPISync() {
+        clearTimeout(apiRetryTimer);
+        setStatus(`Connecting to ${API_ORIGIN.replace(/^https?:\/\//, '')}…`);
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 5000);
+        try {
+          const response = await fetch(API_LOAD, { cache: 'no-store', signal: controller.signal });
+          if (!response.ok) throw new Error(`API load failed (${response.status})`);
+          const result = await response.json();
+          const remoteCandidate = result?.data ?? result?.notebook ?? (result?.schema === 'opology-outline-notebook' ? result : null);
+          apiRevision = Number(result?.revision ?? 0);
+          apiReady = true;
+          apiOnline = true;
+          if (remoteCandidate && Array.isArray(remoteCandidate.tree)) {
+            const remoteState = normalizeState(remoteCandidate);
+            const remoteTime = Date.parse(remoteState.updatedAt || 0);
+            const localTime = Date.parse(state.updatedAt || 0);
+            if (!hasPersistedLocalState || remoteTime > localTime) {
+              state = remoteState;
+              switchStorageIdentity();
+              saveLocalSnapshot();
+              hasPersistedLocalState = true;
+              renderAll();
+              setStatus('Loaded saved notebook from disk API');
+            } else if (localTime > remoteTime) {
+              await saveStateToAPI();
+            } else {
+              setStatus('Disk API connected · all changes saved');
+            }
+          } else {
+            await saveStateToAPI();
+          }
+        } catch (error) {
+          console.warn('Local autosave API is offline.', error);
+          apiReady = true;
+          apiOnline = false;
+          setStatus('Browser saved · API offline (click to reconnect)', 'offline');
+          scheduleAPIRetry();
+        } finally {
+          clearTimeout(timeout);
+        }
+      }
+
+      function flushBeforeExit() {
+        clearTimeout(saveTimer);
+        clearTimeout(scrollSaveTimer);
+        clearTimeout(apiSaveTimer);
+        if (captureCurrentViewPosition()) state.updatedAt = nowISO();
+        saveLocalSnapshot();
+        if (!apiReady || !navigator.sendBeacon) return;
+        try {
+          const payload = JSON.stringify({ data: state, clientId, baseRevision: apiRevision, reason: 'page-exit' });
+          navigator.sendBeacon(API_SAVE, new Blob([payload], { type: 'text/plain;charset=UTF-8' }));
+        } catch (error) {
+          console.warn('Exit beacon was unavailable; browser copy is still saved.', error);
+        }
+      }
+
+      function switchStorageIdentity() {
+        storageKey = `opology-outline-notebook:${state.id}`;
+      }
+
+      function escapeHTML(value = '') {
+        return String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+      }
+
+      function safeURL(value = '') {
+        const trimmed = value.trim();
+        if (/^(https?:|mailto:|#)/i.test(trimmed)) return escapeHTML(trimmed);
+        return '#';
+      }
+
+      function safeImageURL(value = '') {
+        const trimmed = value.trim();
+        if (trimmed.startsWith('opo-image:')) {
+          const assetId = trimmed.slice('opo-image:'.length);
+          return state.assets?.[assetId]?.dataUrl || '';
+        }
+        if (/^data:image\/(?:png|jpe?g|gif|webp|svg\+xml|avif);base64,/i.test(trimmed)) return trimmed;
+        if (/^(?:https?:|blob:)/i.test(trimmed)) return trimmed;
+        if (!/^[a-z][a-z0-9+.-]*:/i.test(trimmed) && !trimmed.startsWith('//')) return trimmed;
+        return '';
+      }
+
+      function parseMarkdownAttributes(source = '') {
+        const attributes = {};
+        const pattern = /([a-zA-Z][\w-]*)=(?:"([^"]*)"|'([^']*)'|([^\s]+))/g;
+        for (const match of source.matchAll(pattern)) attributes[match[1].toLowerCase()] = match[2] ?? match[3] ?? match[4] ?? '';
+        return attributes;
+      }
+
+      function renderImageBlock(alt, source, attributeSource = '') {
+        const attributes = parseMarkdownAttributes(attributeSource);
+        const resolvedSource = safeImageURL(source);
+        const alignment = ['left', 'center', 'right', 'full'].includes(attributes.align) ? attributes.align : 'center';
+        const widthMatch = String(attributes.width || '80%').match(/^(\d{1,4})(%|px)$/i);
+        let width = '80%';
+        if (widthMatch) {
+          const unit = widthMatch[2].toLowerCase();
+          const amount = unit === '%' ? Math.min(100, Math.max(20, Number(widthMatch[1]))) : Math.min(1800, Math.max(120, Number(widthMatch[1])));
+          width = `${amount}${unit}`;
+        }
+        if (alignment === 'full') width = '100%';
+        if (!resolvedSource) return `<figure class="markdown-image image-missing"><strong>Image unavailable</strong><br>${escapeHTML(alt || source)}</figure>`;
+        const caption = attributes.caption ? `<figcaption>${renderInline(attributes.caption)}</figcaption>` : '';
+        return `<figure class="markdown-image align-${alignment}" style="--image-width:${width}"><img src="${escapeHTML(resolvedSource)}" alt="${escapeHTML(alt)}" loading="lazy" decoding="async">${caption}</figure>`;
+      }
+
+      function renderInline(source = '') {
+        const tokens = [];
+        const protect = html => {
+          const token = `@@OPO${tokens.length}TOKEN@@`;
+          tokens.push(html);
+          return token;
+        };
+        let text = String(source);
+        text = text.replace(/`([^`]+)`/g, (_, code) => protect(`<code>${escapeHTML(code)}</code>`));
+        text = text.replace(/\$([^$\n]+)\$/g, (_, math) => protect(`<span class="math-inline">\\(${escapeHTML(math)}\\)</span>`));
+        text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, url) => protect(`<a href="${safeURL(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(label)}</a>`));
+        text = escapeHTML(text);
+        text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        text = text.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+        text = text.replace(/~~([^~]+)~~/g, '<del>$1</del>');
+        text = text.replace(/==([^=]+)==/g, '<mark>$1</mark>');
+        text = text.replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
+        tokens.forEach((html, index) => { text = text.replace(`@@OPO${index}TOKEN@@`, html); });
+        return text;
+      }
+
+      function isSpecialStart(lines, index) {
+        const line = lines[index] || '';
+        const next = lines[index + 1] || '';
+        return !line.trim()
+          || /^```/.test(line.trim())
+          || /^:::\s*/.test(line.trim())
+          || /^!\[[^\]]*\]\(/.test(line.trim())
+          || /^\$\$/.test(line.trim())
+          || /^#{1,4}\s+/.test(line)
+          || /^\s*(?:[-*_]){3,}\s*$/.test(line)
+          || /^\s*>\s?/.test(line)
+          || /^\s*[-*+]\s+/.test(line)
+          || /^\s*\d+\.\s+/.test(line)
+          || (line.includes('|') && /^\s*\|?\s*:?-{3,}/.test(next));
+      }
+
+      function splitTableRow(line) {
+        return line.trim().replace(/^\||\|$/g, '').split('|').map(cell => cell.trim());
+      }
+
+      function createRenderContext(sectionId = state.activeSectionId) {
+        const counters = Object.fromEntries(mathCounterTypes.map(type => [type, 0]));
+        let chapterNumber = '1';
+        const found = sectionId ? locate(sectionId) : null;
+        const chapter = found?.ancestors?.find(node => node.type === 'chapter');
+        if (chapter) {
+          const writtenNumber = chapter.title.match(/(?:^|\b)(?:chapter\s*)?(\d+(?:\.\d+)*)/i);
+          const chapterLocation = locate(chapter.id);
+          chapterNumber = writtenNumber?.[1] || String((chapterLocation?.index ?? 0) + 1);
+          const activeIndex = chapter.children?.findIndex(node => node.id === sectionId) ?? -1;
+          const earlierSections = activeIndex > 0 ? chapter.children.slice(0, activeIndex) : [];
+          earlierSections.forEach(section => {
+            const pattern = /(?:^|\n):::\s*(axiom|theorem|definition|lemma|corollary|example|remark|concept|algorithmblock|algorithm|exercise|proposition)\b/gi;
+            for (const match of String(section.markdown || '').matchAll(pattern)) {
+              const type = match[1].toLowerCase() === 'algorithmblock' ? 'algorithm' : match[1].toLowerCase();
+              counters[type] += 1;
+            }
+          });
+        }
+        return { chapterNumber, counters };
+      }
+
+      function renderDirective(type, title, bodyLines, context) {
+        let normalizedType = type.toLowerCase();
+        if (normalizedType === 'algorithmblock') normalizedType = 'algorithm';
+        if (normalizedType === 'columns' || normalizedType === 'bento') {
+          const parts = [];
+          let current = [];
+          bodyLines.forEach(line => {
+            if (/^\s*---\s*$/.test(line)) {
+              parts.push(current.join('\n'));
+              current = [];
+            } else current.push(line);
+          });
+          parts.push(current.join('\n'));
+          const cards = parts.filter(part => part.trim()).map(part => `<article>${renderMarkdown(part, context)}</article>`).join('');
+          return `<div class="opo-layout ${normalizedType}">${cards}</div>`;
+        }
+
+        const content = renderMarkdown(bodyLines.join('\n'), context);
+        if (normalizedType === 'proof' || normalizedType === 'solution') {
+          const label = normalizedType === 'proof' ? 'Proof.' : 'Solution.';
+          return `<div class="proof-block ${normalizedType}"><span class="proof-name">${label}</span><div class="proof-content">${content}</div><span class="qed" aria-label="end of ${normalizedType}">■</span></div>`;
+        }
+
+        const mathLabels = {
+          axiom: 'Axiom', theorem: 'Theorem', definition: 'Definition', lemma: 'Lemma',
+          corollary: 'Corollary', example: 'Example', remark: 'Remark', concept: 'Concept',
+          algorithm: 'Algorithm', exercise: 'Exercises', proposition: 'Proposition'
+        };
+        if (mathCounterTypes.includes(normalizedType)) {
+          context.counters[normalizedType] += 1;
+          const number = `${context.chapterNumber}.${context.counters[normalizedType]}`;
+          const titleText = title ? `: ${renderInline(title)}` : '';
+          return `<aside class="math-block ${normalizedType}"><div class="math-block-title">${mathLabels[normalizedType]} ${number}${titleText}</div><div class="math-block-content">${content}</div></aside>`;
+        }
+
+        const legacyLabels = { note: 'Note', warning: 'Caution', takeaway: 'Takeaway' };
+        const heading = title ? `<h3>${renderInline(title)}</h3>` : '';
+        return `<aside class="opo-block ${normalizedType}"><div class="block-label">${legacyLabels[normalizedType] || escapeHTML(normalizedType)}</div>${heading}${content}</aside>`;
+      }
+
+      function renderMarkdown(markdown = '', context = createRenderContext()) {
+        const lines = String(markdown).replace(/\r\n?/g, '\n').split('\n');
+        const output = [];
+        let index = 0;
+        while (index < lines.length) {
+          const line = lines[index];
+          const trimmed = line.trim();
+          if (!trimmed) { index += 1; continue; }
+
+          const codeStart = trimmed.match(/^```\s*([\w-]*)/);
+          if (codeStart) {
+            const language = codeStart[1] || 'code';
+            const code = [];
+            index += 1;
+            while (index < lines.length && !/^```\s*$/.test(lines[index].trim())) code.push(lines[index++]);
+            if (index < lines.length) index += 1;
+            output.push(`<pre data-language="${escapeHTML(language)}"><code>${escapeHTML(code.join('\n'))}</code></pre>`);
+            continue;
+          }
+
+          const directiveStart = trimmed.match(/^:::\s*(axiom|theorem|definition|lemma|corollary|example|remark|concept|algorithmblock|algorithm|exercise|proposition|proof|solution|note|warning|takeaway|columns|bento)(?:\s+(.*))?$/i);
+          if (directiveStart) {
+            const body = [];
+            index += 1;
+            while (index < lines.length && !/^:::\s*$/.test(lines[index].trim())) body.push(lines[index++]);
+            if (index < lines.length) index += 1;
+            output.push(renderDirective(directiveStart[1], directiveStart[2] || '', body, context));
+            continue;
+          }
+
+          const imageStart = trimmed.match(/^!\[([^\]]*)\]\(([^\s)]+)\)\s*(?:\{([^}]*)\})?$/);
+          if (imageStart) {
+            output.push(renderImageBlock(imageStart[1], imageStart[2], imageStart[3] || ''));
+            index += 1;
+            continue;
+          }
+
+          if (/^\$\$/.test(trimmed)) {
+            const math = [];
+            const openingRemainder = trimmed.replace(/^\$\$\s*/, '');
+            if (openingRemainder.endsWith('$$') && openingRemainder.length > 2) {
+              math.push(openingRemainder.slice(0, -2).trim());
+              index += 1;
+            } else {
+              if (openingRemainder) math.push(openingRemainder);
+              index += 1;
+              while (index < lines.length && !/\$\$\s*$/.test(lines[index])) math.push(lines[index++]);
+              if (index < lines.length) {
+                const closingLine = lines[index].replace(/\$\$\s*$/, '');
+                if (closingLine.trim()) math.push(closingLine);
+                index += 1;
+              }
+            }
+            output.push(`<div class="math-display">\\[${escapeHTML(math.join('\n'))}\\]</div>`);
+            continue;
+          }
+
+          const heading = line.match(/^(#{1,4})\s+(.+)$/);
+          if (heading) {
+            const level = heading[1].length;
+            output.push(`<h${level}>${renderInline(heading[2])}</h${level}>`);
+            index += 1;
+            continue;
+          }
+
+          if (/^\s*(?:[-*_]){3,}\s*$/.test(line)) {
+            output.push('<hr>');
+            index += 1;
+            continue;
+          }
+
+          if (line.includes('|') && /^\s*\|?\s*:?-{3,}/.test(lines[index + 1] || '')) {
+            const headers = splitTableRow(line);
+            index += 2;
+            const rows = [];
+            while (index < lines.length && lines[index].includes('|') && lines[index].trim()) rows.push(splitTableRow(lines[index++]));
+            output.push(`<table><thead><tr>${headers.map(cell => `<th>${renderInline(cell)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${headers.map((_, cellIndex) => `<td>${renderInline(row[cellIndex] || '')}</td>`).join('')}</tr>`).join('')}</tbody></table>`);
+            continue;
+          }
+
+          if (/^\s*>\s?/.test(line)) {
+            const quote = [];
+            while (index < lines.length && /^\s*>\s?/.test(lines[index])) quote.push(lines[index++].replace(/^\s*>\s?/, ''));
+            output.push(`<blockquote>${renderMarkdown(quote.join('\n'), context)}</blockquote>`);
+            continue;
+          }
+
+          if (/^\s*[-*+]\s+/.test(line)) {
+            const items = [];
+            let tasks = false;
+            while (index < lines.length && /^\s*[-*+]\s+/.test(lines[index])) {
+              const item = lines[index++].replace(/^\s*[-*+]\s+/, '');
+              const task = item.match(/^\[([ xX])\]\s*(.*)$/);
+              if (task) {
+                tasks = true;
+                items.push(`<li><input type="checkbox" disabled ${task[1].toLowerCase() === 'x' ? 'checked' : ''}>${renderInline(task[2])}</li>`);
+              } else items.push(`<li>${renderInline(item)}</li>`);
+            }
+            output.push(`<ul${tasks ? ' class="task-list"' : ''}>${items.join('')}</ul>`);
+            continue;
+          }
+
+          if (/^\s*\d+\.\s+/.test(line)) {
+            const items = [];
+            while (index < lines.length && /^\s*\d+\.\s+/.test(lines[index])) items.push(`<li>${renderInline(lines[index++].replace(/^\s*\d+\.\s+/, ''))}</li>`);
+            output.push(`<ol>${items.join('')}</ol>`);
+            continue;
+          }
+
+          const paragraph = [line.trim()];
+          index += 1;
+          while (index < lines.length && !isSpecialStart(lines, index)) paragraph.push(lines[index++].trim());
+          output.push(`<p>${renderInline(paragraph.join(' '))}</p>`);
+        }
+        return output.join('\n');
+      }
+
+      function getActiveEditor() {
+        const editors = $$('.section-editor', elements.subjectCanvas);
+        return editors.find(editor => editor.dataset.sectionId === state.activeSectionId) || editors[0] || null;
+      }
+
+      function activateSection(sectionId, focusEditor = false) {
+        const found = locate(sectionId);
+        if (!found?.node || found.node.type !== 'section') return null;
+        const selectionChanged = state.activeSectionId !== sectionId || state.activeNodeId !== sectionId;
+        state.activeSectionId = sectionId;
+        state.activeNodeId = sectionId;
+        state.activeSubjectId = subjectForNode(sectionId)?.id || state.activeSubjectId;
+        $$('.section-card', elements.subjectCanvas).forEach(card => card.classList.toggle('active', card.dataset.nodeId === sectionId));
+        if (selectionChanged) renderTree();
+        const editor = getActiveEditor();
+        if (focusEditor) editor?.focus();
+        return editor;
+      }
+
+      function updateSectionPreview(sectionId, markdownOverride = null) {
+        const section = locate(sectionId)?.node;
+        const preview = $$('.section-preview .markdown-body', elements.subjectCanvas)
+          .find(node => node.dataset.previewSectionId === sectionId);
+        if (!section || !preview) return;
+        const markdown = markdownOverride === null ? String(section.markdown || '') : String(markdownOverride);
+        preview.innerHTML = markdown.trim()
+          ? renderMarkdown(markdown, createRenderContext(sectionId))
+          : '<div class="preview-empty"><div><span class="empty-mark">M↓</span><p>This section is blank. Write Markdown on the left.</p></div></div>';
+        clearTimeout(renderTimer);
+        renderTimer = setTimeout(() => {
+          if (globalThis.MathJax?.typesetPromise) {
+            globalThis.MathJax.typesetClear?.([preview]);
+            globalThis.MathJax.typesetPromise([preview]).catch(() => {});
+          }
+        }, 80);
+      }
+
+      function renderPreview(sectionId = null) {
+        if (sectionId) {
+          const editor = $$('.section-editor', elements.subjectCanvas).find(item => item.dataset.sectionId === sectionId);
+          updateSectionPreview(sectionId, editor?.value ?? null);
+        } else {
+          $$('.section-editor', elements.subjectCanvas).forEach(editor => updateSectionPreview(editor.dataset.sectionId, editor.value));
+        }
+        updateWordCount();
+      }
+
+      function updateWordCount() {
+        const markdown = $$('.section-editor', elements.subjectCanvas).map(editor => editor.value).join('\n');
+        const trimmed = markdown.trim();
+        const words = trimmed ? (trimmed.match(/[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu) || []).length : 0;
+        elements.wordCount.innerHTML = `<strong>${words}</strong> words · <strong>${markdown.length}</strong> characters in subject`;
+      }
+
+      function matchesSearch(node, query) {
+        if (!query) return true;
+        if (node.title.toLowerCase().includes(query)) return true;
+        return node.children?.some(child => matchesSearch(child, query)) || false;
+      }
+
+      function renderTree() {
+        const query = elements.outlineSearch.value.trim().toLowerCase();
+        elements.outlineTree.innerHTML = '';
+        if (!state.tree.length) {
+          elements.outlineTree.innerHTML = '<li class="tree-empty">No outline items yet.<br><button class="plain-button" type="button" data-empty-add>Add subject</button></li>';
+          return;
+        }
+
+        const makeList = nodes => {
+          const list = document.createElement('ul');
+          nodes.filter(node => matchesSearch(node, query)).forEach(node => {
+            const item = document.createElement('li');
+            item.className = 'tree-node';
+            const row = document.createElement('div');
+            row.className = `tree-row${node.id === state.activeNodeId ? ' active' : ''}`;
+            row.dataset.nodeId = node.id;
+            row.draggable = !READER_MODE && !('PointerEvent' in globalThis);
+            row.setAttribute('aria-grabbed', 'false');
+
+            const toggle = document.createElement('button');
+            toggle.type = 'button';
+            toggle.className = `tree-toggle${node.children ? '' : ' empty'}`;
+            toggle.dataset.treeAction = 'toggle';
+            toggle.setAttribute('aria-label', node.expanded ? 'Collapse item' : 'Expand item');
+            toggle.textContent = node.children ? (node.expanded || query ? '▼' : '▶') : '•';
+
+            const dragHandle = document.createElement('span');
+            dragHandle.className = 'tree-drag-handle';
+            dragHandle.title = `Drag ${node.title} to move it`;
+            dragHandle.textContent = '⠿';
+
+            const main = document.createElement('button');
+            main.type = 'button';
+            main.className = 'tree-main';
+            main.dataset.treeAction = 'select';
+            main.title = node.title;
+            main.innerHTML = `<span class="node-kind">${typeMarks[node.type]}</span>${escapeHTML(node.title)}`;
+
+            const more = document.createElement('button');
+            more.type = 'button';
+            more.className = 'tree-more';
+            more.dataset.treeAction = 'more';
+            more.setAttribute('aria-label', `Actions for ${node.title}`);
+            more.textContent = '•••';
+
+            row.append(toggle, dragHandle, main, more);
+            item.append(row);
+            if (node.children?.length && (node.expanded || query)) item.append(makeList(node.children));
+            list.append(item);
+          });
+          return list;
+        };
+
+        const rendered = makeList(state.tree);
+        [...rendered.children].forEach(child => elements.outlineTree.append(child));
+      }
+
+      function removeTreeDropPlaceholder() {
+        const parent = treeDropPlaceholder?.parentElement;
+        treeDropPlaceholder?.remove();
+        if (parent?.classList.contains('tree-drop-preview-list') && !parent.children.length) parent.remove();
+        treeDropPlaceholder = null;
+      }
+
+      function clearOutlineDropPreview() {
+        removeTreeDropPlaceholder();
+        $$('.tree-row', elements.outlineTree).forEach(row => row.classList.remove('drop-before', 'drop-after', 'drop-inside'));
+        currentDrop = null;
+      }
+
+      function clearOutlineDropIndicators() {
+        clearOutlineDropPreview();
+        $$('.tree-row', elements.outlineTree).forEach(row => row.classList.remove('dragging'));
+      }
+
+      function rowForNode(nodeId) {
+        return $$('.tree-row', elements.outlineTree).find(row => row.dataset.nodeId === nodeId) || null;
+      }
+
+      function showOutlineDropPreview(descriptor) {
+        if (!descriptor) {
+          clearOutlineDropPreview();
+          return;
+        }
+        if (currentDrop?.targetId === descriptor.targetId
+          && currentDrop?.mode === descriptor.mode
+          && treeDropPlaceholder?.isConnected) return;
+
+        removeTreeDropPlaceholder();
+        $$('.tree-row', elements.outlineTree).forEach(row => row.classList.remove('drop-before', 'drop-after', 'drop-inside'));
+        const targetRow = descriptor.row?.isConnected ? descriptor.row : rowForNode(descriptor.targetId);
+        const targetItem = targetRow?.closest('.tree-node');
+        const source = locate(descriptor.sourceId)?.node;
+        if (!targetRow || !targetItem || !source) {
+          currentDrop = null;
+          return;
+        }
+
+        const placeholder = document.createElement('li');
+        placeholder.className = 'tree-drop-placeholder';
+        placeholder.dataset.label = descriptor.mode === 'inside'
+          ? `Insert ${typeNames[source.type]} inside ${locate(descriptor.targetId)?.node.title || 'item'}`
+          : `Insert ${typeNames[source.type]} ${descriptor.mode}`;
+        const sourceHeight = pointerDrag?.rowHeight || rowForNode(descriptor.sourceId)?.getBoundingClientRect().height || 42;
+        placeholder.style.setProperty('--drop-height', `${Math.max(40, Math.min(58, sourceHeight))}px`);
+
+        if (descriptor.mode === 'inside') {
+          targetRow.classList.add('drop-inside');
+          let childList = [...targetItem.children].find(child => child.tagName === 'UL');
+          if (!childList) {
+            childList = document.createElement('ul');
+            childList.className = 'tree-drop-preview-list';
+            targetItem.append(childList);
+          }
+          childList.append(placeholder);
+        } else {
+          targetRow.classList.add(`drop-${descriptor.mode}`);
+          targetItem.parentElement.insertBefore(placeholder, descriptor.mode === 'before' ? targetItem : targetItem.nextSibling);
+        }
+        treeDropPlaceholder = placeholder;
+        currentDrop = { ...descriptor, row: targetRow };
+        requestAnimationFrame(() => placeholder.classList.add('ready'));
+      }
+
+      function describeOutlineDrop(sourceId, targetId, targetRow, clientY) {
+        if (!sourceId || !targetId || sourceId === targetId) return null;
+        const source = locate(sourceId);
+        const target = locate(targetId);
+        if (!source || !target || nodeContains(source.node, targetId)) return null;
+        if (parentType[source.node.type] === target.node.type) return { sourceId, targetId, mode: 'inside', row: targetRow };
+        if (source.node.type !== target.node.type) return null;
+        const bounds = targetRow.getBoundingClientRect();
+        const midpoint = bounds.top + (bounds.height || 40) / 2;
+        return { sourceId, targetId, mode: Number(clientY) < midpoint ? 'before' : 'after', row: targetRow };
+      }
+
+      function positionTreeDragFloat(clientX, clientY) {
+        if (!pointerDrag?.started || !treeDragFloat) return;
+        const maxLeft = Math.max(8, innerWidth - pointerDrag.floatWidth - 8);
+        const maxTop = Math.max(8, innerHeight - pointerDrag.rowHeight - 8);
+        const left = Math.max(8, Math.min(maxLeft, clientX - pointerDrag.offsetX));
+        const top = Math.max(8, Math.min(maxTop, clientY - pointerDrag.offsetY));
+        treeDragFloat.style.left = `${left}px`;
+        treeDragFloat.style.top = `${top}px`;
+      }
+
+      function startPointerTreeDrag(event) {
+        if (!pointerDrag || pointerDrag.started) return;
+        const { row, sourceItem } = pointerDrag;
+        const rowBounds = row.getBoundingClientRect();
+        const itemBounds = sourceItem.getBoundingClientRect();
+        pointerDrag.started = true;
+        pointerDrag.rowHeight = Math.max(39, rowBounds.height || 39);
+        pointerDrag.sourceHeight = Math.max(pointerDrag.rowHeight, itemBounds.height || pointerDrag.rowHeight);
+        pointerDrag.floatWidth = Math.max(220, rowBounds.width || 260);
+        pointerDrag.offsetX = Math.max(12, Math.min(pointerDrag.floatWidth - 12, event.clientX - rowBounds.left));
+        pointerDrag.offsetY = Math.max(8, Math.min(pointerDrag.rowHeight - 8, event.clientY - rowBounds.top));
+
+        treeDragFloat = row.cloneNode(true);
+        treeDragFloat.classList.remove('active', 'dragging', 'drop-before', 'drop-after', 'drop-inside');
+        treeDragFloat.classList.add('tree-drag-float');
+        treeDragFloat.removeAttribute('draggable');
+        treeDragFloat.setAttribute('aria-hidden', 'true');
+        treeDragFloat.style.width = `${pointerDrag.floatWidth}px`;
+        treeDragFloat.style.height = `${pointerDrag.rowHeight}px`;
+        document.body.append(treeDragFloat);
+
+        draggingNodeId = pointerDrag.sourceId;
+        row.classList.add('dragging');
+        row.setAttribute('aria-grabbed', 'true');
+        sourceItem.classList.add('drag-source-node');
+        sourceItem.style.height = `${pointerDrag.sourceHeight}px`;
+        sourceItem.style.overflow = 'hidden';
+        document.body.classList.add('tree-pointer-dragging');
+        row.setPointerCapture?.(event.pointerId);
+        positionTreeDragFloat(event.clientX, event.clientY);
+        requestAnimationFrame(() => {
+          if (!pointerDrag?.started || pointerDrag.sourceItem !== sourceItem) return;
+          sourceItem.style.height = '0px';
+          sourceItem.style.margin = '0';
+          sourceItem.style.opacity = '0';
+        });
+      }
+
+      function autoScrollOutline(clientY) {
+        const pane = elements.outlineTree.closest('.outline-scroll');
+        const bounds = pane?.getBoundingClientRect();
+        if (!pane || !bounds) return;
+        const edge = 54;
+        if (clientY < bounds.top + edge) pane.scrollTop -= Math.ceil((bounds.top + edge - clientY) / 5);
+        if (clientY > bounds.bottom - edge) pane.scrollTop += Math.ceil((clientY - (bounds.bottom - edge)) / 5);
+      }
+
+      function updatePointerTreeDrag(event) {
+        if (!pointerDrag || event.pointerId !== pointerDrag.pointerId) return;
+        const distance = Math.hypot(event.clientX - pointerDrag.startX, event.clientY - pointerDrag.startY);
+        if (!pointerDrag.started && distance < 5) return;
+        if (!pointerDrag.started) startPointerTreeDrag(event);
+        if (!pointerDrag?.started) return;
+        event.preventDefault();
+        positionTreeDragFloat(event.clientX, event.clientY);
+        autoScrollOutline(event.clientY);
+
+        const hit = document.elementFromPoint?.(event.clientX, event.clientY);
+        if (hit?.closest?.('.tree-drop-placeholder') && currentDrop) return;
+        const targetRow = hit?.closest?.('.tree-row');
+        if (!targetRow || !elements.outlineTree.contains(targetRow)) {
+          showOutlineDropPreview(null);
+          return;
+        }
+        const descriptor = describeOutlineDrop(pointerDrag.sourceId, targetRow.dataset.nodeId, targetRow, event.clientY);
+        showOutlineDropPreview(descriptor);
+      }
+
+      function restorePointerDragSource(drag) {
+        if (!drag?.sourceItem?.isConnected) return;
+        const sourceItem = drag.sourceItem;
+        sourceItem.style.height = `${drag.sourceHeight}px`;
+        sourceItem.style.margin = '2px 0';
+        sourceItem.style.opacity = '1';
+        setTimeout(() => {
+          sourceItem.classList.remove('drag-source-node');
+          sourceItem.style.removeProperty('height');
+          sourceItem.style.removeProperty('margin');
+          sourceItem.style.removeProperty('opacity');
+          sourceItem.style.removeProperty('overflow');
+        }, 170);
+      }
+
+      function endPointerTreeDrag(event, cancelled = false) {
+        if (!pointerDrag || event.pointerId !== pointerDrag.pointerId) return;
+        const drag = pointerDrag;
+        const operation = drag.started && !cancelled && currentDrop
+          ? { kind: 'relative', sourceId: drag.sourceId, targetId: currentDrop.targetId, mode: currentDrop.mode }
+          : null;
+        if (drag.started) {
+          event.preventDefault();
+          suppressTreeClickUntil = Date.now() + 420;
+        }
+        if (drag.started) {
+          try { drag.row.releasePointerCapture?.(event.pointerId); } catch (error) { /* Pointer capture may already be released. */ }
+        }
+        treeDragFloat?.remove();
+        treeDragFloat = null;
+        clearOutlineDropIndicators();
+        if (drag.started) restorePointerDragSource(drag);
+        document.body.classList.remove('tree-pointer-dragging');
+        draggingNodeId = null;
+        pointerDrag = null;
+        if (operation) requestMoveConfirmation(operation);
+      }
+
+      function titleField(node, className, label) {
+        if (READER_MODE) {
+          const tag = node.type === 'subject' || node.type === 'course' ? 'h1' : (node.type === 'chapter' ? 'h2' : 'h3');
+          return `<${tag} class="${className} reader-title">${escapeHTML(node.title)}</${tag}>`;
+        }
+        return `<textarea rows="1" class="${className}" data-node-id="${escapeHTML(node.id)}" data-node-field="title" aria-label="${escapeHTML(label)}" placeholder="${escapeHTML(defaultNames[node.type])}">${escapeHTML(node.title)}</textarea>`;
+      }
+
+      function subtitleField(node, label) {
+        if (READER_MODE) return node.subtitle ? `<p class="node-subtitle-input reader-subtitle">${escapeHTML(node.subtitle)}</p>` : '';
+        return `<textarea rows="1" class="node-subtitle-input" data-node-id="${escapeHTML(node.id)}" data-node-field="subtitle" aria-label="${escapeHTML(label)}" placeholder="Add a subtitle…">${escapeHTML(node.subtitle || '')}</textarea>`;
+      }
+
+      function subjectEyebrowField(subject) {
+        if (READER_MODE) return `<div class="node-eyebrow">${escapeHTML(subject.eyebrow || 'OPOLOGY SUBJECT')}</div>`;
+        return `<input class="node-eyebrow" data-node-id="${escapeHTML(subject.id)}" data-node-field="eyebrow" value="${escapeHTML(subject.eyebrow || 'OPOLOGY SUBJECT')}" aria-label="Subject label">`;
+      }
+
+      function autoGrowField(field) {
+        field.style.height = 'auto';
+        field.style.height = `${Math.max(field.scrollHeight, 28)}px`;
+      }
+
+      function sectionsInside(node) {
+        const sections = [];
+        walkCandidate([node], item => { if (item.type === 'section') sections.push(item); });
+        return sections;
+      }
+
+      function renderSectionCard(section, number) {
+        const updated = section.updatedAt ? `Edited ${new Date(section.updatedAt).toLocaleString()}` : 'Blank section';
+        return `<article class="section-card${section.id === state.activeSectionId ? ' active' : ''}" id="node-${escapeHTML(section.id)}" data-node-id="${escapeHTML(section.id)}">
+          <header class="section-heading">
+            <div class="node-eyebrow">Section ${number}</div>
+            ${titleField(section, 'section-title-input', `Section ${number} title`)}
+            ${subtitleField(section, `Section ${number} subtitle`)}
+          </header>
+          <div class="section-editor-card" data-section-id="${escapeHTML(section.id)}">
+            <div class="image-drop-overlay">Drop image into this section</div>
+            <div class="section-grid">
+              <div class="section-write">
+                <textarea class="section-editor" data-section-id="${escapeHTML(section.id)}" spellcheck="true" aria-label="Markdown for ${escapeHTML(section.title)}" placeholder="Write Markdown here…">${escapeHTML(section.markdown || '')}</textarea>
+              </div>
+              <div class="section-preview" tabindex="0" aria-label="OPO styled preview for ${escapeHTML(section.title)}">
+                <div class="markdown-body" data-preview-section-id="${escapeHTML(section.id)}"></div>
+              </div>
+            </div>
+            <div class="section-meta"><span>Markdown + OPO preview</span><span data-section-updated="${escapeHTML(section.id)}">${escapeHTML(updated)}</span></div>
+          </div>
+        </article>`;
+      }
+
+      function renderChapterPage(chapter, number) {
+        const sections = (chapter.children || []).filter(node => node.type === 'section');
+        return `<section class="chapter-page" id="node-${escapeHTML(chapter.id)}" data-node-id="${escapeHTML(chapter.id)}">
+          <header class="chapter-heading">
+            <div class="node-eyebrow">Chapter ${number}</div>
+            ${titleField(chapter, 'chapter-title-input', `Chapter ${number} title`)}
+            ${subtitleField(chapter, `Chapter ${number} subtitle`)}
+          </header>
+          ${sections.length ? sections.map((section, index) => renderSectionCard(section, `${number}.${index + 1}`)).join('') : '<div class="empty-level">This chapter has no sections yet. Add one from the left outline menu.</div>'}
+        </section>`;
+      }
+
+      function renderCoursePage(course, number) {
+        const chapters = (course.children || []).filter(node => node.type === 'chapter');
+        return `<section class="course-page" id="node-${escapeHTML(course.id)}" data-node-id="${escapeHTML(course.id)}">
+          <header class="course-opening">
+            <div class="node-eyebrow">Course ${number}</div>
+            ${titleField(course, 'course-title-input', `Course ${number} title`)}
+            ${subtitleField(course, `Course ${number} subtitle`)}
+          </header>
+          ${chapters.length ? chapters.map((chapter, index) => renderChapterPage(chapter, index + 1)).join('') : '<div class="empty-level">This course has no chapters yet. Add one from the left outline menu.</div>'}
+        </section>`;
+      }
+
+      function renderDocument() {
+        const subject = activeSubject();
+        const hasSubject = Boolean(subject);
+        elements.documentView.style.display = hasSubject ? 'grid' : 'none';
+        elements.noDocument.classList.toggle('visible', !hasSubject);
+        elements.notebookTitle.value = state.title;
+        document.title = `${state.title || 'Untitled Notebook'} · OPOlogy Lab`;
+        applyMode(state.settings.mode);
+
+        if (!subject) {
+          elements.subjectCanvas.innerHTML = '';
+          elements.breadcrumb.textContent = state.title;
+          return;
+        }
+
+        const subjectSections = sectionsInside(subject);
+        if (!subjectSections.some(section => section.id === state.activeSectionId)) state.activeSectionId = subjectSections[0]?.id || null;
+        if (!subjectForNode(state.activeNodeId) || subjectForNode(state.activeNodeId)?.id !== subject.id) state.activeNodeId = subject.id;
+        const courses = (subject.children || []).filter(node => node.type === 'course');
+        elements.subjectCanvas.innerHTML = `<article class="subject-hero" id="node-${escapeHTML(subject.id)}" data-node-id="${escapeHTML(subject.id)}">
+          ${subjectEyebrowField(subject)}
+          ${titleField(subject, 'subject-title-input', 'Subject title')}
+          ${subtitleField(subject, 'Subject subtitle')}
+          <div class="subject-hint">Edit every title and subtitle directly. Use the left outline to jump through the complete subject.</div>
+        </article>
+        ${courses.length ? courses.map((course, index) => renderCoursePage(course, index + 1)).join('') : '<div class="empty-level">This subject has no courses yet. Add one from the left outline menu.</div>'}`;
+        $$('[data-node-field]', elements.subjectCanvas).forEach(autoGrowField);
+        elements.breadcrumb.textContent = [state.title, subject.title, 'Entire subject'].join('  /  ');
+        if (READER_MODE) {
+          document.title = `${subject.title} · OPOlogy Lab`;
+          setStatus('Lecture website · Print/PDF uses paper layout');
+        }
+        renderPreview();
+        restoreCurrentViewPosition(subject.id);
+      }
+
+      function renderAll() {
+        renderTree();
+        renderDocument();
+      }
+
+      function scrollToNode(nodeId, behavior = 'smooth') {
+        const target = document.getElementById(`node-${nodeId}`);
+        if (!target) return;
+        target.scrollIntoView({ behavior, block: 'start' });
+      }
+
+      function applyMode(mode) {
+        const safeMode = ['write', 'split', 'preview'].includes(mode) ? mode : 'split';
+        state.settings.mode = safeMode;
+        elements.body.dataset.mode = safeMode;
+        $$('.mode-button').forEach(button => button.classList.toggle('active', button.dataset.mode === safeMode));
+        if (safeMode !== 'write') renderPreview();
+      }
+
+      function closeMobileOutline() {
+        elements.outline.classList.remove('open');
+        elements.mobileScrim.classList.remove('open');
+        elements.mobileToggle.setAttribute('aria-expanded', 'false');
+      }
+
+      function toggleFocusMode() {
+        const focused = !elements.body.classList.contains('focus-mode');
+        elements.body.classList.toggle('focus-mode', focused);
+        elements.body.classList.toggle('hide-outline', focused);
+      }
+
+      function positionPopover(popover, anchor) {
+        popover.classList.add('open');
+        const anchorRect = anchor.getBoundingClientRect();
+        const menuRect = popover.getBoundingClientRect();
+        let left = anchorRect.right - menuRect.width;
+        let top = anchorRect.bottom + 6;
+        if (left < 8) left = 8;
+        if (left + menuRect.width > innerWidth - 8) left = innerWidth - menuRect.width - 8;
+        if (top + menuRect.height > innerHeight - 8) top = anchorRect.top - menuRect.height - 6;
+        popover.style.left = `${left}px`;
+        popover.style.top = `${Math.max(8, top)}px`;
+      }
+
+      function closeMenus() {
+        elements.nodeMenu.classList.remove('open');
+        elements.mathBlockMenu.classList.remove('open');
+        elements.backupMenu.classList.remove('open');
+        elements.mathBlockButton.setAttribute('aria-expanded', 'false');
+        elements.backupButton.setAttribute('aria-expanded', 'false');
+      }
+
+      function openNameDialog({ title, description, value = '', onSubmit }) {
+        elements.nameDialogTitle.textContent = title;
+        elements.nameDialogDescription.textContent = description;
+        elements.nameInput.value = value;
+        nameSubmitHandler = onSubmit;
+        elements.nameDialog.showModal();
+        requestAnimationFrame(() => { elements.nameInput.focus(); elements.nameInput.select(); });
+      }
+
+      function appendSelectOption(select, value, label) {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = label;
+        select.append(option);
+        return option;
+      }
+
+      function updateMoveDialogPositions() {
+        const found = moveDialogNodeId ? locate(moveDialogNodeId) : null;
+        if (!found) return;
+        const destinationParentId = elements.moveParentSelect.value;
+        const destination = destinationChildren(found.node.type, destinationParentId) || [];
+        const siblings = destination.filter(node => node.id !== found.node.id);
+        elements.movePositionSelect.innerHTML = '';
+        appendSelectOption(elements.movePositionSelect, 'start', 'At beginning');
+        siblings.forEach(node => appendSelectOption(elements.movePositionSelect, `before:${node.id}`, `Before “${node.title}”`));
+        appendSelectOption(elements.movePositionSelect, 'end', 'At end');
+
+        const currentParentId = found.parent?.id || ROOT_PARENT_ID;
+        let preferred = 'end';
+        if (currentParentId === destinationParentId) {
+          const nextSibling = found.siblings.slice(found.index + 1).find(node => node.id !== found.node.id);
+          preferred = nextSibling ? `before:${nextSibling.id}` : 'end';
+        }
+        if ([...elements.movePositionSelect.options].some(option => option.value === preferred)) elements.movePositionSelect.value = preferred;
+        const destinationLabel = destinationParentId === ROOT_PARENT_ID ? 'Notebook / Subjects' : outlinePath(destinationParentId);
+        elements.moveRoutePreview.textContent = `“${found.node.title}” → ${destinationLabel}`;
+      }
+
+      function openMoveDialog(nodeId) {
+        const found = locate(nodeId);
+        if (!found || READER_MODE) return;
+        moveDialogNodeId = nodeId;
+        elements.moveDialogTitle.textContent = `Move ${typeNames[found.node.type]}`;
+        const allowedParent = parentType[found.node.type];
+        elements.moveDialogDescription.textContent = allowedParent
+          ? `${typeNames[found.node.type]} can move into any ${typeNames[allowedParent]}, including one inside another subject.`
+          : 'Subjects stay at notebook root and can be reordered freely.';
+        elements.moveParentSelect.innerHTML = '';
+        if (found.node.type === 'subject') {
+          appendSelectOption(elements.moveParentSelect, ROOT_PARENT_ID, 'Notebook root / Subjects');
+        } else {
+          nodesOfType(allowedParent).forEach(parent => appendSelectOption(elements.moveParentSelect, parent.id, outlinePath(parent.id)));
+        }
+        const currentParentId = found.parent?.id || ROOT_PARENT_ID;
+        if ([...elements.moveParentSelect.options].some(option => option.value === currentParentId)) elements.moveParentSelect.value = currentParentId;
+        updateMoveDialogPositions();
+        elements.moveDialog.showModal();
+        requestAnimationFrame(() => elements.moveParentSelect.focus());
+      }
+
+      function describeMoveOperation(operation) {
+        const source = operation?.sourceId ? locate(operation.sourceId) : null;
+        if (!source) return null;
+        const fromPath = outlinePath(source.node.id);
+
+        if (operation.kind === 'relative') {
+          const target = locate(operation.targetId);
+          const mode = operation.mode;
+          if (!target || source.node.id === target.node.id || !['before', 'after', 'inside'].includes(mode)) return null;
+          if (nodeContains(source.node, target.node.id)) return null;
+          const valid = (mode === 'inside' && parentType[source.node.type] === target.node.type)
+            || (mode !== 'inside' && source.node.type === target.node.type);
+          if (!valid) return null;
+          const targetParentPath = target.parent ? outlinePath(target.parent.id) : 'Notebook / Subjects';
+          const destination = mode === 'inside'
+            ? `${outlinePath(target.node.id)} / at end`
+            : `${targetParentPath} / ${mode} “${target.node.title}”`;
+          return { source, route: `From: ${fromPath}  →  To: ${destination}` };
+        }
+
+        if (operation.kind === 'parent') {
+          const destinationParentId = operation.destinationParentId;
+          if (!destinationChildren(source.node.type, destinationParentId)) return null;
+          if (destinationParentId !== ROOT_PARENT_ID && nodeContains(source.node, destinationParentId)) return null;
+          const position = String(operation.position || 'end');
+          let positionLabel = position === 'start' ? 'at beginning' : 'at end';
+          const anchorMatch = position.match(/^(before|after):(.+)$/);
+          if (anchorMatch) {
+            const anchor = locate(anchorMatch[2]);
+            if (!anchor || anchor.node.type !== source.node.type || anchor.node.id === source.node.id) return null;
+            const anchorParentId = anchor.parent?.id || ROOT_PARENT_ID;
+            if (anchorParentId !== destinationParentId) return null;
+            positionLabel = `${anchorMatch[1]} “${anchor.node.title}”`;
+          } else if (!['start', 'end'].includes(position)) {
+            return null;
+          }
+          const destinationPath = destinationParentId === ROOT_PARENT_ID
+            ? 'Notebook / Subjects'
+            : outlinePath(destinationParentId);
+          return { source, route: `From: ${fromPath}  →  To: ${destinationPath} / ${positionLabel}` };
+        }
+        return null;
+      }
+
+      function requestMoveConfirmation(operation) {
+        const description = describeMoveOperation(operation);
+        if (!description || READER_MODE) {
+          setStatus('That move is not available.', 'error');
+          return false;
+        }
+        pendingMoveOperation = { ...operation };
+        elements.moveConfirmTitle.textContent = `Move this ${typeNames[description.source.node.type]}?`;
+        elements.moveConfirmRoute.textContent = description.route;
+        if (!elements.moveConfirmDialog.open) elements.moveConfirmDialog.showModal();
+        requestAnimationFrame(() => elements.moveConfirmCancel.focus());
+        return true;
+      }
+
+      function addRootSubject() {
+        openNameDialog({
+          title: 'Add subject',
+          description: 'This is the highest level of the notebook outline.',
+          value: defaultNames.subject,
+          onSubmit: value => {
+            captureCurrentViewPosition();
+            const subject = makeNode('subject', value);
+            state.tree.push(subject);
+            state.activeSubjectId = subject.id;
+            state.activeNodeId = subject.id;
+            renderAll();
+            persist();
+          }
+        });
+      }
+
+      function addChildTo(nodeId) {
+        const found = locate(nodeId);
+        if (!found) return;
+        const nextType = childType(found.node.type);
+        if (!nextType) return;
+        openNameDialog({
+          title: `Add ${typeNames[nextType].toLowerCase()}`,
+          description: `This ${typeNames[nextType].toLowerCase()} will be placed inside “${found.node.title}”.`,
+          value: defaultNames[nextType],
+          onSubmit: value => {
+            captureCurrentViewPosition();
+            const node = makeNode(nextType, value);
+            found.node.children ||= [];
+            found.node.children.push(node);
+            found.node.expanded = true;
+            if (nextType === 'section') state.activeSectionId = node.id;
+            state.activeNodeId = node.id;
+            state.activeSubjectId = subjectForNode(found.node.id)?.id || state.activeSubjectId;
+            renderAll();
+            persist();
+          }
+        });
+      }
+
+      function addSiblingTo(nodeId) {
+        const found = locate(nodeId);
+        if (!found) return;
+        openNameDialog({
+          title: `Add ${typeNames[found.node.type].toLowerCase()}`,
+          description: `Create another ${typeNames[found.node.type].toLowerCase()} at the same outline level.`,
+          value: defaultNames[found.node.type],
+          onSubmit: value => {
+            captureCurrentViewPosition();
+            const node = makeNode(found.node.type, value);
+            found.siblings.splice(found.index + 1, 0, node);
+            if (node.type === 'section') state.activeSectionId = node.id;
+            state.activeNodeId = node.id;
+            state.activeSubjectId = node.type === 'subject' ? node.id : (subjectForNode(found.node.id)?.id || state.activeSubjectId);
+            renderAll();
+            persist();
+          }
+        });
+      }
+
+      function cloneNodeWithFreshIds(node) {
+        const copy = deepCopy(node);
+        const refresh = item => {
+          item.id = uid(item.type);
+          if (item.children) item.children.forEach(refresh);
+        };
+        refresh(copy);
+        copy.title = `${copy.title} Copy`;
+        return copy;
+      }
+
+      function exportFilename(extension) {
+        const base = (state.title || 'OPOlogy Notebook').replace(/[\\/:*?"<>|]+/g, '-').trim() || 'OPOlogy Notebook';
+        return `${base}.${extension}`;
+      }
+
+      function downloadBlob(content, filename, type) {
+        const blob = content instanceof Blob ? content : new Blob([content], { type });
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = filename;
+        document.body.append(anchor);
+        anchor.click();
+        anchor.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+
+      function buildExportClone(exportState) {
+        const clone = document.documentElement.cloneNode(true);
+        const dataNode = clone.querySelector('#opology-embedded-data');
+        dataNode.textContent = JSON.stringify(exportState).replace(/</g, '\\u003c');
+        clone.querySelector('#nodeMenu')?.classList.remove('open');
+        clone.querySelector('#mathBlockMenu')?.classList.remove('open');
+        clone.querySelector('#backupMenu')?.classList.remove('open');
+        clone.querySelector('#outline')?.classList.remove('open');
+        clone.querySelector('#mobileScrim')?.classList.remove('open');
+        clone.querySelector('#imageDialog')?.removeAttribute('open');
+        clone.querySelector('#moveDialog')?.removeAttribute('open');
+        clone.querySelector('#moveConfirmDialog')?.removeAttribute('open');
+        clone.querySelector('#moveUndoToast')?.setAttribute('hidden', '');
+        clone.querySelector('body')?.classList.remove('focus-mode', 'hide-outline', 'reader-mode');
+        return clone;
+      }
+
+      function buildPortableHTML() {
+        const exportState = deepCopy(state);
+        exportState.updatedAt = nowISO();
+        const clone = buildExportClone(exportState);
+        return `<!doctype html>\n${clone.outerHTML}`;
+      }
+
+      function buildReaderHTML() {
+        const subject = activeSubject();
+        if (!subject) return '';
+        const exportState = deepCopy(state);
+        exportState.updatedAt = nowISO();
+        exportState.settings.mode = 'preview';
+        exportState.tree = [deepCopy(subject)];
+        exportState.activeSubjectId = subject.id;
+        exportState.activeNodeId = subject.id;
+        exportState.activeSectionId = sectionsInside(subject)[0]?.id || null;
+        const clone = buildExportClone(exportState);
+        const body = clone.querySelector('body');
+        body?.classList.add('reader-mode');
+        if (body) body.dataset.mode = 'preview';
+        const title = clone.querySelector('title');
+        if (title) title.textContent = `${subject.title} · OPOlogy Lab`;
+        return `<!doctype html>\n${clone.outerHTML}`;
+      }
+
+      function saveReaderHTML() {
+        const subject = activeSubject();
+        if (!subject) return;
+        const base = (subject.title || 'OPOlogy Lecture').replace(/[\\/:*?"<>|]+/g, '-').trim() || 'OPOlogy Lecture';
+        downloadBlob(buildReaderHTML(), `${base}-Lecture-Website.html`, 'text/html;charset=utf-8');
+        setStatus('Lecture website HTML downloaded');
+      }
+
+      async function saveEditableHTML() {
+        const html = buildPortableHTML();
+        const filename = exportFilename('html');
+        try {
+          if ('showSaveFilePicker' in globalThis) {
+            fileHandle ||= await globalThis.showSaveFilePicker({
+              suggestedName: filename,
+              types: [{ description: 'Editable OPOlogy HTML Notebook', accept: { 'text/html': ['.html'] } }]
+            });
+            const writable = await fileHandle.createWritable();
+            await writable.write(html);
+            await writable.close();
+            setStatus('Editable HTML saved to computer');
+          } else {
+            downloadBlob(html, filename, 'text/html;charset=utf-8');
+            setStatus('Editable HTML downloaded');
+          }
+        } catch (error) {
+          if (error?.name !== 'AbortError') {
+            console.warn(error);
+            downloadBlob(html, filename, 'text/html;charset=utf-8');
+            setStatus('Editable HTML downloaded');
+          }
+        }
+      }
+
+      function exportAllMarkdown() {
+        const lines = [`# ${state.title}`, ''];
+        const expandImages = markdown => String(markdown).replace(/\(opo-image:([^)]+)\)/g, (match, assetId) => {
+          const dataUrl = state.assets?.[assetId]?.dataUrl;
+          return dataUrl ? `(${dataUrl})` : match;
+        });
+        const emit = (nodes, level = 2) => {
+          nodes.forEach(node => {
+            lines.push(`${'#'.repeat(Math.min(level, 6))} ${node.title}`, '');
+            if (node.subtitle) lines.push(`> ${node.subtitle}`, '');
+            if (node.type === 'section' && node.markdown) lines.push(expandImages(node.markdown), '');
+            if (node.children) emit(node.children, level + 1);
+          });
+        };
+        emit(state.tree);
+        return lines.join('\n').trimEnd() + '\n';
+      }
+
+      function insertAtSelection(before, after = '', placeholder = '') {
+        const editor = getActiveEditor();
+        if (!editor || editor.disabled) return;
+        const start = editor.selectionStart;
+        const end = editor.selectionEnd;
+        const selected = editor.value.slice(start, end) || placeholder;
+        const replacement = `${before}${selected}${after}`;
+        editor.setRangeText(replacement, start, end, 'end');
+        editor.focus();
+        editor.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+
+      function insertRawMarkdown(content, selection = null) {
+        const editor = getActiveEditor();
+        if (!editor || editor.disabled) return;
+        const start = selection?.start ?? editor.selectionStart;
+        const end = selection?.end ?? editor.selectionEnd;
+        const prefix = start > 0 && !editor.value.slice(0, start).endsWith('\n\n') ? '\n\n' : '';
+        const suffix = end < editor.value.length && !editor.value.slice(end).startsWith('\n\n') ? '\n\n' : '';
+        editor.setRangeText(`${prefix}${content}${suffix}`, start, end, 'end');
+        editor.focus();
+        editor.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+
+      function isImageFile(file) {
+        return Boolean(file && (file.type?.startsWith('image/') || /\.(?:png|jpe?g|webp|gif|svg|avif|bmp)$/i.test(file.name || '')));
+      }
+
+      function imageFileFromTransfer(transfer) {
+        const files = [...(transfer?.files || [])];
+        const itemFiles = [...(transfer?.items || [])].map(item => item.kind === 'file' ? item.getAsFile?.() : null).filter(Boolean);
+        return [...files, ...itemFiles].find(isImageFile) || null;
+      }
+
+      function readFileAsDataURL(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(String(reader.result));
+          reader.onerror = () => reject(reader.error || new Error('Could not read image file.'));
+          reader.readAsDataURL(file);
+        });
+      }
+
+      async function prepareImageData(file) {
+        const original = await readFileAsDataURL(file);
+        const isResizable = /image\/(?:png|jpe?g|webp|avif)/i.test(file.type || '');
+        if (!isResizable || file.size <= 2_000_000) return original;
+        try {
+          const temporaryURL = URL.createObjectURL(file);
+          const image = new Image();
+          image.src = temporaryURL;
+          if (image.decode) await image.decode();
+          else await new Promise((resolve, reject) => { image.onload = resolve; image.onerror = reject; });
+          const scale = Math.min(1, 2200 / Math.max(image.naturalWidth, image.naturalHeight));
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+          canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+          canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
+          URL.revokeObjectURL(temporaryURL);
+          const outputType = file.type === 'image/png' ? 'image/png' : (file.type === 'image/webp' ? 'image/webp' : 'image/jpeg');
+          const reduced = canvas.toDataURL(outputType, 0.88);
+          return reduced.length < original.length ? reduced : original;
+        } catch (error) {
+          console.warn('Image reduction was unavailable; keeping the original file.', error);
+          return original;
+        }
+      }
+
+      function updateImageDialogFile(file) {
+        if (!isImageFile(file)) {
+          setStatus('Choose a browser-readable image file', true);
+          return;
+        }
+        pendingImageFile = file;
+        elements.imageFileLabel.textContent = file.name || 'Pasted image';
+        if (!elements.imageAltInput.value) elements.imageAltInput.value = (file.name || 'Image').replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
+        if (imagePreviewURL) URL.revokeObjectURL(imagePreviewURL);
+        imagePreviewURL = URL.createObjectURL(file);
+        elements.imageDialogPreview.src = imagePreviewURL;
+        elements.imageDialogPreview.classList.add('visible');
+      }
+
+      function openImageDialog(file = null, selection = null) {
+        const editor = getActiveEditor();
+        if (!editor) {
+          alert('Add a section before inserting an image.');
+          return;
+        }
+        activateSection(editor.dataset.sectionId);
+        imageInsertSectionId = editor.dataset.sectionId;
+        imageInsertSelection = selection || { start: editor.selectionStart, end: editor.selectionEnd };
+        pendingImageFile = null;
+        elements.imageFileInput.value = '';
+        elements.imageFileLabel.textContent = 'Choose or drop an image';
+        elements.imageAltInput.value = '';
+        elements.imageCaptionInput.value = '';
+        elements.imageWidthInput.value = '80';
+        elements.imageWidthOutput.textContent = '80%';
+        elements.imageAlignInput.value = 'center';
+        elements.imageDialogPreview.classList.remove('visible');
+        elements.imageDialogPreview.removeAttribute('src');
+        elements.imageDialog.showModal();
+        if (file) updateImageDialogFile(file);
+      }
+
+      function clearImageDialog() {
+        if (imagePreviewURL) URL.revokeObjectURL(imagePreviewURL);
+        imagePreviewURL = null;
+        pendingImageFile = null;
+        imageInsertSelection = null;
+        imageInsertSectionId = null;
+        elements.imageDialogPreview.classList.remove('visible');
+      }
+
+      async function insertPendingImage() {
+        if (!pendingImageFile) {
+          elements.imageFileLabel.textContent = 'Choose an image before inserting';
+          return false;
+        }
+        if (pendingImageFile.size > 16_000_000 && !confirm('This image is larger than 16 MB and may make the notebook slow. Insert it anyway?')) return false;
+        const originalLabel = elements.imageInsertButton.textContent;
+        elements.imageInsertButton.disabled = true;
+        elements.imageInsertButton.textContent = 'Processing…';
+        setStatus('Embedding image…');
+        try {
+          const dataUrl = await prepareImageData(pendingImageFile);
+          const assetId = uid('image');
+          state.assets[assetId] = {
+            dataUrl,
+            name: pendingImageFile.name || 'Pasted image',
+            type: pendingImageFile.type || 'image/unknown',
+            originalSize: pendingImageFile.size || 0,
+            createdAt: nowISO()
+          };
+          const cleanAlt = (elements.imageAltInput.value || 'Image').replace(/[\[\]\r\n]/g, ' ').trim();
+          const cleanCaption = elements.imageCaptionInput.value.replace(/["{}\r\n]/g, "'").trim();
+          const width = Math.min(100, Math.max(20, Number(elements.imageWidthInput.value) || 80));
+          const align = ['left', 'center', 'right', 'full'].includes(elements.imageAlignInput.value) ? elements.imageAlignInput.value : 'center';
+          const captionAttribute = cleanCaption ? ` caption="${cleanCaption}"` : '';
+          const tag = `![${cleanAlt}](opo-image:${assetId}){width=${width}% align=${align}${captionAttribute}}`;
+          if (imageInsertSectionId) activateSection(imageInsertSectionId);
+          insertRawMarkdown(tag, imageInsertSelection);
+          elements.imageDialog.close();
+          setStatus('Image embedded and autosaved');
+          persist();
+          return true;
+        } catch (error) {
+          console.warn(error);
+          setStatus('Could not embed this image', true);
+          alert('The image could not be read. Try PNG, JPG/JPEG, WebP, GIF, SVG, or AVIF.');
+          return false;
+        } finally {
+          elements.imageInsertButton.disabled = false;
+          elements.imageInsertButton.textContent = originalLabel;
+        }
+      }
+
+      function insertBlockTemplate(kind) {
+        const editor = getActiveEditor();
+        if (!editor) return;
+        const start = editor.selectionStart;
+        const end = editor.selectionEnd;
+        const selected = editor.value.slice(start, end);
+        const blocks = {
+          heading: `## ${selected || 'Heading'}`,
+          list: selected ? selected.split('\n').map(line => `- ${line}`).join('\n') : '- List item',
+          task: selected ? selected.split('\n').map(line => `- [ ] ${line}`).join('\n') : '- [ ] Task',
+          formula: `$$\n${selected || 'x = \\text{...}'}\n$$`,
+          axiom: `::: axiom\n${selected || ''}\n:::`,
+          theorem: `::: theorem\n${selected || ''}\n:::`,
+          definition: `::: definition\n${selected || ''}\n:::`,
+          lemma: `::: lemma\n${selected || ''}\n:::`,
+          corollary: `::: corollary\n${selected || ''}\n:::`,
+          example: `::: example\n${selected || ''}\n:::`,
+          remark: `::: remark\n${selected || ''}\n:::`,
+          concept: `::: concept\n${selected || ''}\n:::`,
+          algorithm: `::: algorithm\n${selected || ''}\n:::`,
+          exercise: `::: exercise\n${selected || ''}\n:::`,
+          proposition: `::: proposition\n${selected || ''}\n:::`,
+          proof: `::: proof\n${selected || ''}\n:::`,
+          solution: `::: solution\n${selected || ''}\n:::`,
+          columns: `::: columns\n${selected || '### Left column\n\n'}\n\n---\n\n### Right column\n\n\n:::`,
+          bento: `::: bento\n${selected || '### Block 1\n\n'}\n\n---\n\n### Block 2\n\n\n---\n\n### Block 3\n\n\n:::`,
+          table: `| Column 1 | Column 2 |\n| --- | --- |\n|  |  |`,
+          code: `\`\`\`text\n${selected || ''}\n\`\`\``
+        };
+        const content = blocks[kind];
+        if (content === undefined) return;
+        const prefix = start > 0 && !editor.value.slice(0, start).endsWith('\n\n') ? '\n\n' : '';
+        const suffix = end < editor.value.length && !editor.value.slice(end).startsWith('\n\n') ? '\n\n' : '';
+        editor.setRangeText(`${prefix}${content}${suffix}`, start, end, 'end');
+        editor.focus();
+        editor.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+
+      function updateProgress() {
+        const pane = elements.subjectScroll;
+        const max = pane.scrollHeight - pane.clientHeight;
+        const percent = max > 0 ? (pane.scrollTop / max) * 100 : 0;
+        elements.progressBar.style.width = `${Math.min(100, Math.max(0, percent))}%`;
+      }
+
+      function updateScrollSpy() {
+        if (scrollSpyFrame) return;
+        scrollSpyFrame = requestAnimationFrame(() => {
+          scrollSpyFrame = null;
+          const viewportTop = elements.subjectScroll.getBoundingClientRect().top + 90;
+          const candidates = $$('.subject-hero, .course-page, .chapter-page, .section-card', elements.subjectCanvas);
+          if (!candidates.length) return;
+          let current = candidates[0];
+          candidates.forEach(node => {
+            if (node.getBoundingClientRect().top <= viewportTop) current = node;
+          });
+          const nodeId = current.dataset.nodeId;
+          if (!nodeId || nodeId === state.activeNodeId) return;
+          state.activeNodeId = nodeId;
+          const found = locate(nodeId)?.node;
+          if (found?.type === 'section') state.activeSectionId = nodeId;
+          renderTree();
+        });
+      }
+
+      elements.notebookTitle.addEventListener('input', event => {
+        state.title = event.target.value || 'Untitled Notebook';
+        elements.breadcrumb.textContent = [state.title, activeSubject()?.title, 'Entire subject'].filter(Boolean).join('  /  ');
+        document.title = `${state.title} · OPOlogy Lab`;
+        persist();
+      });
+
+      elements.subjectCanvas.addEventListener('input', event => {
+        const editor = event.target.closest('.section-editor');
+        if (editor) {
+          const sectionId = editor.dataset.sectionId;
+          const section = locate(sectionId)?.node;
+          if (!section) return;
+          activateSection(sectionId);
+          section.markdown = editor.value;
+          section.updatedAt = nowISO();
+          const updated = $(`[data-section-updated="${sectionId}"]`, elements.subjectCanvas);
+          if (updated) updated.textContent = `Edited ${new Date(section.updatedAt).toLocaleString()}`;
+          updateSectionPreview(sectionId, editor.value);
+          updateWordCount();
+          persist();
+          return;
+        }
+
+        const field = event.target.closest('[data-node-field]');
+        if (!field) return;
+        const node = locate(field.dataset.nodeId)?.node;
+        if (!node) return;
+        const key = field.dataset.nodeField;
+        node[key] = field.value;
+        if (node.type === 'section') node.updatedAt = nowISO();
+        autoGrowField(field);
+        state.activeNodeId = node.id;
+        state.activeSubjectId = subjectForNode(node.id)?.id || state.activeSubjectId;
+        if (key === 'title') renderTree();
+        elements.breadcrumb.textContent = [state.title, activeSubject()?.title, 'Entire subject'].filter(Boolean).join('  /  ');
+        persist();
+      });
+
+      elements.subjectCanvas.addEventListener('focusin', event => {
+        const editor = event.target.closest('.section-editor');
+        if (editor) activateSection(editor.dataset.sectionId);
+      });
+
+      elements.subjectCanvas.addEventListener('focusout', event => {
+        const field = event.target.closest('[data-node-field="title"]');
+        if (!field || field.value.trim()) return;
+        const node = locate(field.dataset.nodeId)?.node;
+        if (!node) return;
+        node.title = defaultNames[node.type];
+        field.value = node.title;
+        autoGrowField(field);
+        renderTree();
+        persist();
+      });
+
+      elements.subjectCanvas.addEventListener('keydown', event => {
+        const editor = event.target.closest('.section-editor');
+        if (editor && event.key === 'Tab') {
+          event.preventDefault();
+          activateSection(editor.dataset.sectionId);
+          insertAtSelection('  ');
+        }
+        if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 's') {
+          event.preventDefault();
+          persist(true);
+          saveEditableHTML();
+        }
+      });
+
+      elements.outlineTree.addEventListener('pointerdown', event => {
+        if (READER_MODE || pointerDrag || (event.button ?? 0) !== 0) return;
+        if (event.target.closest('.tree-toggle, .tree-more')) return;
+        if (event.pointerType === 'touch' && !event.target.closest('.tree-drag-handle')) return;
+        const row = event.target.closest('.tree-row');
+        const sourceItem = row?.closest('.tree-node');
+        if (!row || !sourceItem || !locate(row.dataset.nodeId)) return;
+        pointerDrag = {
+          pointerId: event.pointerId,
+          sourceId: row.dataset.nodeId,
+          startX: event.clientX,
+          startY: event.clientY,
+          row,
+          sourceItem,
+          started: false
+        };
+      });
+
+      document.addEventListener('pointermove', updatePointerTreeDrag, { passive: false });
+      document.addEventListener('pointerup', event => endPointerTreeDrag(event, false));
+      document.addEventListener('pointercancel', event => endPointerTreeDrag(event, true));
+      elements.outlineTree.addEventListener('click', event => {
+        if (Date.now() >= suppressTreeClickUntil) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }, true);
+      document.addEventListener('keydown', event => {
+        if (event.key !== 'Escape' || !pointerDrag?.started) return;
+        endPointerTreeDrag({ pointerId: pointerDrag.pointerId, preventDefault() {} }, true);
+      });
+
+      elements.outlineTree.addEventListener('dragstart', event => {
+        if (READER_MODE || event.target.closest('.tree-more, .tree-toggle')) {
+          event.preventDefault();
+          return;
+        }
+        const row = event.target.closest('.tree-row');
+        if (!row || !locate(row.dataset.nodeId)) return;
+        draggingNodeId = row.dataset.nodeId;
+        row.classList.add('dragging');
+        row.setAttribute('aria-grabbed', 'true');
+        if (event.dataTransfer) {
+          event.dataTransfer.effectAllowed = 'move';
+          event.dataTransfer.setData('text/plain', draggingNodeId);
+          const bounds = row.getBoundingClientRect();
+          const ghost = row.cloneNode(true);
+          ghost.classList.remove('active', 'dragging');
+          ghost.classList.add('tree-drag-float');
+          ghost.style.width = `${Math.max(220, bounds.width || 260)}px`;
+          ghost.style.left = '-10000px';
+          ghost.style.top = '-10000px';
+          document.body.append(ghost);
+          event.dataTransfer.setDragImage?.(ghost, 18, Math.max(8, (bounds.height || 39) / 2));
+          setTimeout(() => ghost.remove(), 0);
+        }
+      });
+
+      elements.outlineTree.addEventListener('dragover', event => {
+        if (event.target.closest('.tree-drop-placeholder') && currentDrop) {
+          event.preventDefault();
+          autoScrollOutline(event.clientY);
+          return;
+        }
+        const row = event.target.closest('.tree-row');
+        if (!row || !draggingNodeId) return;
+        const descriptor = describeOutlineDrop(draggingNodeId, row.dataset.nodeId, row, event.clientY);
+        if (!descriptor) {
+          clearOutlineDropPreview();
+          return;
+        }
+        event.preventDefault();
+        if (event.dataTransfer) event.dataTransfer.dropEffect = 'move';
+        showOutlineDropPreview(descriptor);
+        autoScrollOutline(event.clientY);
+      });
+
+      elements.outlineTree.addEventListener('drop', event => {
+        const placeholderHit = event.target.closest('.tree-drop-placeholder');
+        const row = event.target.closest('.tree-row') || (placeholderHit ? currentDrop?.row : null);
+        if (!row || !draggingNodeId) return;
+        const descriptor = placeholderHit
+          ? currentDrop
+          : (describeOutlineDrop(draggingNodeId, row.dataset.nodeId, row, event.clientY)
+            || (currentDrop?.row === row ? currentDrop : null));
+        if (!descriptor) return;
+        event.preventDefault();
+        const sourceId = draggingNodeId;
+        draggingNodeId = null;
+        clearOutlineDropIndicators();
+        requestMoveConfirmation({ kind: 'relative', sourceId, targetId: descriptor.targetId, mode: descriptor.mode });
+      });
+
+      elements.outlineTree.addEventListener('dragend', () => {
+        draggingNodeId = null;
+        clearOutlineDropIndicators();
+        $$('.tree-row', elements.outlineTree).forEach(row => row.setAttribute('aria-grabbed', 'false'));
+      });
+
+      elements.outlineTree.addEventListener('dragleave', event => {
+        if (!elements.outlineTree.contains(event.relatedTarget)) {
+          clearOutlineDropPreview();
+        }
+      });
+
+      elements.outlineTree.addEventListener('click', event => {
+        if (event.target.closest('[data-empty-add]')) { addRootSubject(); return; }
+        const row = event.target.closest('.tree-row');
+        if (!row) return;
+        const found = locate(row.dataset.nodeId);
+        if (!found) return;
+        const action = event.target.closest('[data-tree-action]')?.dataset.treeAction;
+        if (action === 'toggle') {
+          if (found.node.children) {
+            found.node.expanded = !found.node.expanded;
+            renderTree();
+            persist();
+          }
+        } else if (action === 'select') {
+          const nextSubject = subjectForNode(found.node.id);
+          const subjectChanged = nextSubject?.id !== state.activeSubjectId;
+          if (subjectChanged) captureCurrentViewPosition();
+          state.activeSubjectId = nextSubject?.id || state.activeSubjectId;
+          state.activeNodeId = found.node.id;
+          if (found.node.type === 'section') state.activeSectionId = found.node.id;
+          found.node.expanded = true;
+          if (subjectChanged) renderAll(); else renderTree();
+          requestAnimationFrame(() => scrollToNode(found.node.id));
+          persist();
+          closeMobileOutline();
+        } else if (action === 'more') {
+          closeMenus();
+          activeMenuNodeId = found.node.id;
+          const nextType = childType(found.node.type);
+          $('[data-node-action="add-child"]', elements.nodeMenu).hidden = !nextType;
+          elements.childTypeLabel.textContent = nextType ? typeNames[nextType] : '';
+          positionPopover(elements.nodeMenu, event.target.closest('.tree-more'));
+        }
+      });
+
+      elements.nodeMenu.addEventListener('click', event => {
+        const action = event.target.closest('[data-node-action]')?.dataset.nodeAction;
+        if (!action || !activeMenuNodeId) return;
+        const found = locate(activeMenuNodeId);
+        closeMenus();
+        if (!found) return;
+        if (action === 'add-child') addChildTo(found.node.id);
+        if (action === 'add-sibling') addSiblingTo(found.node.id);
+        if (action === 'move') openMoveDialog(found.node.id);
+        if (action === 'rename') {
+          openNameDialog({
+            title: `Rename ${typeNames[found.node.type].toLowerCase()}`,
+            description: 'This changes the label in the left outline.',
+            value: found.node.title,
+            onSubmit: value => {
+              captureCurrentViewPosition();
+              found.node.title = value;
+              renderAll();
+              persist();
+            }
+          });
+        }
+        if (action === 'duplicate') {
+          captureCurrentViewPosition();
+          const copy = cloneNodeWithFreshIds(found.node);
+          found.siblings.splice(found.index + 1, 0, copy);
+          if (copy.type === 'section') state.activeSectionId = copy.id;
+          state.activeNodeId = copy.id;
+          state.activeSubjectId = copy.type === 'subject' ? copy.id : (subjectForNode(found.node.id)?.id || state.activeSubjectId);
+          renderAll();
+          persist();
+        }
+        if (action === 'delete') {
+          const confirmed = confirm(`Delete “${found.node.title}” and everything inside it?\n\nDownload a backup first if you may need it later.`);
+          if (!confirmed) return;
+          captureCurrentViewPosition();
+          found.siblings.splice(found.index, 1);
+          if (state.activeSectionId && !locate(state.activeSectionId)) state.activeSectionId = firstSection()?.id || null;
+          if (state.activeNodeId && !locate(state.activeNodeId)) state.activeNodeId = state.activeSectionId || firstSubject()?.id || null;
+          if (state.activeSubjectId && !locate(state.activeSubjectId)) state.activeSubjectId = subjectForNode(state.activeNodeId)?.id || firstSubject()?.id || null;
+          renderAll();
+          persist(true);
+        }
+      });
+
+      elements.addSubjectButton.addEventListener('click', addRootSubject);
+      elements.emptyAddSubject.addEventListener('click', addRootSubject);
+      elements.outlineSearch.addEventListener('input', renderTree);
+
+      $$('.mode-button').forEach(button => button.addEventListener('click', () => {
+        applyMode(button.dataset.mode);
+        persist();
+      }));
+
+      $$('[data-format]').forEach(button => button.addEventListener('click', () => {
+        const kind = button.dataset.format;
+        if (kind === 'bold') insertAtSelection('**', '**', 'bold text');
+        else if (kind === 'italic') insertAtSelection('*', '*', 'italic text');
+        else if (kind === 'link') insertAtSelection('[', '](https://)', 'link text');
+        else insertBlockTemplate(kind);
+      }));
+
+      elements.imageButton.addEventListener('click', () => openImageDialog());
+      elements.imageFileInput.addEventListener('change', event => {
+        const file = [...(event.target.files || [])].find(isImageFile);
+        if (file) updateImageDialogFile(file);
+      });
+      elements.imageWidthInput.addEventListener('input', () => {
+        elements.imageWidthOutput.textContent = `${elements.imageWidthInput.value}%`;
+      });
+      elements.imageDialogDropZone.addEventListener('dragover', event => {
+        event.preventDefault();
+        elements.imageDialogDropZone.classList.add('dragging');
+      });
+      elements.imageDialogDropZone.addEventListener('dragleave', () => elements.imageDialogDropZone.classList.remove('dragging'));
+      elements.imageDialogDropZone.addEventListener('drop', event => {
+        event.preventDefault();
+        elements.imageDialogDropZone.classList.remove('dragging');
+        const file = imageFileFromTransfer(event.dataTransfer);
+        if (file) updateImageDialogFile(file);
+      });
+      elements.imageForm.addEventListener('submit', async event => {
+        event.preventDefault();
+        await insertPendingImage();
+      });
+      elements.imageCancel.addEventListener('click', () => elements.imageDialog.close());
+      elements.imageDialog.addEventListener('close', clearImageDialog);
+
+      elements.subjectCanvas.addEventListener('dragover', event => {
+        const card = event.target.closest('.section-editor-card');
+        if (!card) return;
+        const hasImage = [...(event.dataTransfer?.items || [])].some(item => item.kind === 'file' && (!item.type || item.type.startsWith('image/')));
+        if (!hasImage) return;
+        event.preventDefault();
+        if (event.dataTransfer) event.dataTransfer.dropEffect = 'copy';
+        activateSection(card.dataset.sectionId);
+        card.classList.add('drag-image');
+      });
+      elements.subjectCanvas.addEventListener('dragleave', event => {
+        const card = event.target.closest('.section-editor-card');
+        if (card && !card.contains(event.relatedTarget)) card.classList.remove('drag-image');
+      });
+      elements.subjectCanvas.addEventListener('drop', event => {
+        const card = event.target.closest('.section-editor-card');
+        if (!card) return;
+        card.classList.remove('drag-image');
+        const file = imageFileFromTransfer(event.dataTransfer);
+        if (!file) return;
+        event.preventDefault();
+        const editor = activateSection(card.dataset.sectionId);
+        openImageDialog(file, { start: editor?.selectionStart || 0, end: editor?.selectionEnd || 0 });
+      });
+      elements.subjectCanvas.addEventListener('paste', event => {
+        const editor = event.target.closest('.section-editor');
+        if (!editor) return;
+        const file = imageFileFromTransfer(event.clipboardData);
+        if (!file) return;
+        event.preventDefault();
+        activateSection(editor.dataset.sectionId);
+        openImageDialog(file, { start: editor.selectionStart, end: editor.selectionEnd });
+      });
+
+      elements.mathBlockButton.addEventListener('click', event => {
+        const opening = !elements.mathBlockMenu.classList.contains('open');
+        closeMenus();
+        if (opening) {
+          positionPopover(elements.mathBlockMenu, event.currentTarget);
+          elements.mathBlockButton.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      elements.mathBlockMenu.addEventListener('click', event => {
+        const kind = event.target.closest('[data-math-block]')?.dataset.mathBlock;
+        if (!kind) return;
+        closeMenus();
+        insertBlockTemplate(kind);
+      });
+
+      $('[data-action="focus"]').addEventListener('click', () => {
+        toggleFocusMode();
+      });
+      elements.printButton.addEventListener('click', () => { renderPreview(); setTimeout(() => print(), 120); });
+
+      elements.backupButton.addEventListener('click', event => {
+        const opening = !elements.backupMenu.classList.contains('open');
+        closeMenus();
+        if (opening) {
+          positionPopover(elements.backupMenu, event.currentTarget);
+          elements.backupButton.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      elements.backupMenu.addEventListener('click', async event => {
+        const action = event.target.closest('[data-backup-action]')?.dataset.backupAction;
+        if (!action) return;
+        closeMenus();
+        if (action === 'reader-html') saveReaderHTML();
+        if (action === 'html') await saveEditableHTML();
+        if (action === 'json') downloadBlob(JSON.stringify(state, null, 2), exportFilename('json'), 'application/json;charset=utf-8');
+        if (action === 'markdown') downloadBlob(exportAllMarkdown(), exportFilename('md'), 'text/markdown;charset=utf-8');
+        if (action === 'import-json') elements.jsonInput.click();
+        if (action === 'import-markdown') elements.markdownInput.click();
+        if (action === 'print') { renderPreview(); setTimeout(() => print(), 120); }
+        if (action === 'new') {
+          const confirmed = confirm('Start a new blank notebook?\n\nYour current browser copy will remain only if you have downloaded a backup.');
+          if (!confirmed) return;
+          state = makeBlankState(true);
+          switchStorageIdentity();
+          elements.outlineSearch.value = '';
+          fileHandle = null;
+          renderAll();
+          persist(true);
+        }
+      });
+
+      elements.jsonInput.addEventListener('change', async event => {
+        const file = event.target.files?.[0];
+        event.target.value = '';
+        if (!file) return;
+        try {
+          const imported = normalizeState(JSON.parse(await file.text()));
+          const confirmed = confirm(`Open the backup “${file.name}”?\n\nThis will replace the notebook currently shown in the editor.`);
+          if (!confirmed) return;
+          state = imported;
+          switchStorageIdentity();
+          fileHandle = null;
+          renderAll();
+          persist(true);
+        } catch (error) {
+          console.warn(error);
+          alert('This file is not a valid OPOlogy notebook backup.');
+        }
+      });
+
+      elements.markdownInput.addEventListener('change', async event => {
+        const file = event.target.files?.[0];
+        event.target.value = '';
+        const section = activeSection();
+        if (!file || !section) return;
+        const text = await file.text();
+        if (section.markdown && !confirm(`Replace the Markdown in “${section.title}” with “${file.name}”?`)) return;
+        section.markdown = text;
+        section.updatedAt = nowISO();
+        renderDocument();
+        persist(true);
+      });
+
+      elements.nameForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const value = elements.nameInput.value.trim();
+        if (!value) { elements.nameInput.focus(); return; }
+        const handler = nameSubmitHandler;
+        nameSubmitHandler = null;
+        elements.nameDialog.close();
+        handler?.(value);
+      });
+      elements.nameCancel.addEventListener('click', () => { nameSubmitHandler = null; elements.nameDialog.close(); });
+      elements.moveParentSelect.addEventListener('change', updateMoveDialogPositions);
+      elements.moveForm.addEventListener('submit', event => {
+        event.preventDefault();
+        if (!moveDialogNodeId) return;
+        const operation = {
+          kind: 'parent',
+          sourceId: moveDialogNodeId,
+          destinationParentId: elements.moveParentSelect.value,
+          position: elements.movePositionSelect.value
+        };
+        moveDialogNodeId = null;
+        elements.moveDialog.close();
+        requestMoveConfirmation(operation);
+      });
+      elements.moveCancel.addEventListener('click', () => { moveDialogNodeId = null; elements.moveDialog.close(); });
+      elements.moveDialog.addEventListener('close', () => { moveDialogNodeId = null; });
+      elements.moveConfirmForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const operation = pendingMoveOperation;
+        pendingMoveOperation = null;
+        elements.moveConfirmDialog.close();
+        if (!operation) return;
+        const moved = operation.kind === 'relative'
+          ? moveNodeRelative(operation.sourceId, operation.targetId, operation.mode)
+          : moveNodeToParent(operation.sourceId, operation.destinationParentId, operation.position);
+        if (!moved) setStatus('That destination is no longer available. Nothing was moved.', 'error');
+      });
+      elements.moveConfirmCancel.addEventListener('click', () => {
+        pendingMoveOperation = null;
+        elements.moveConfirmDialog.close();
+        setStatus('Move cancelled · nothing changed');
+      });
+      elements.moveConfirmDialog.addEventListener('close', () => { pendingMoveOperation = null; });
+      elements.moveUndoButton.addEventListener('click', () => {
+        if (!lastMoveUndo) return;
+        const snapshot = lastMoveUndo;
+        clearMoveUndo();
+        state.tree = deepCopy(snapshot.tree);
+        state.activeSubjectId = snapshot.activeSubjectId;
+        state.activeNodeId = snapshot.activeNodeId;
+        state.activeSectionId = snapshot.activeSectionId;
+        renderAll();
+        moveCommitInProgress = true;
+        try {
+          persist(true);
+        } finally {
+          moveCommitInProgress = false;
+        }
+        setStatus('Move undone and autosaved');
+        requestAnimationFrame(() => scrollToNode(state.activeNodeId || state.activeSectionId));
+      });
+
+      elements.mobileToggle.addEventListener('click', () => {
+        const open = elements.outline.classList.toggle('open');
+        elements.mobileScrim.classList.toggle('open', open);
+        elements.mobileToggle.setAttribute('aria-expanded', String(open));
+      });
+      elements.mobileScrim.addEventListener('click', closeMobileOutline);
+
+      addEventListener('keydown', event => {
+        if (/INPUT|TEXTAREA|SELECT|BUTTON/.test(document.activeElement?.tagName || '') || document.querySelector('dialog[open]')) return;
+        if (event.key.toLowerCase() === 'f') {
+          toggleFocusMode();
+          return;
+        }
+        const forward = ['ArrowDown', 'PageDown', ' '].includes(event.key);
+        const backward = ['ArrowUp', 'PageUp'].includes(event.key);
+        if (!forward && !backward) return;
+        const nodes = $$('.subject-hero, .course-page, .chapter-page, .section-card', elements.subjectCanvas);
+        if (!nodes.length) return;
+        event.preventDefault();
+        const currentIndex = Math.max(0, nodes.findIndex(node => node.dataset.nodeId === state.activeNodeId));
+        const nextIndex = Math.max(0, Math.min(nodes.length - 1, currentIndex + (forward ? 1 : -1)));
+        const nextId = nodes[nextIndex].dataset.nodeId;
+        const found = locate(nextId)?.node;
+        state.activeNodeId = nextId;
+        if (found?.type === 'section') state.activeSectionId = nextId;
+        renderTree();
+        scrollToNode(nextId);
+      });
+
+      document.addEventListener('pointerdown', event => {
+        if (!event.target.closest('.menu-popover') && !event.target.closest('.tree-more') && !event.target.closest('#mathBlockButton') && !event.target.closest('#backupButton')) closeMenus();
+      });
+      addEventListener('resize', closeMenus);
+      elements.subjectScroll.addEventListener('scroll', () => {
+        updateProgress();
+        updateScrollSpy();
+        saveCurrentViewPosition();
+      }, { passive: true });
+      if (!READER_MODE) {
+        elements.saveStatus.addEventListener('click', () => void initializeAPISync());
+        addEventListener('online', () => void initializeAPISync());
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'hidden') flushBeforeExit();
+        });
+        addEventListener('beforeunload', flushBeforeExit);
+      }
+      addEventListener('load', renderPreview);
+      addEventListener('beforeprint', renderPreview);
+
+      renderAll();
+      if (!READER_MODE) {
+        saveLocalSnapshot(hasPersistedLocalState);
+        void initializeAPISync();
+      }
+    })();
+  </script>
+</body>
+</html>
