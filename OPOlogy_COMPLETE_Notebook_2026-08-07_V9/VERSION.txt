@@ -1,0 +1,5 @@
+OPOlogy COMPLETE Subject Notebook
+Build: 2026-08-07 V9
+Default local address: http://127.0.0.1:9012
+HTML marker: COMPLETE SUBJECT BUILD · 2026-08-07 · V9
+HTML SHA-256: bce6c33d7d2a040462d73326a8c17e22c75e3754e07a9d4e83c0dd41d6f501a3
