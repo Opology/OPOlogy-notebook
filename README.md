@@ -1,6 +1,6 @@
 # OPOlogy COMPLETE Subject Notebook
 
-Build: **2026-08-07 V8**  
+Build: **2026-08-07 V9**  
 New address: **http://127.0.0.1:9012**
 
 V8 uses port `9012`, so an older V7 or legacy notebook cannot replace this page.
@@ -20,7 +20,7 @@ V8 uses port `9012`, so an older V7 or legacy notebook cannot replace this page.
 The lower-left corner must display:
 
 ```text
-COMPLETE SUBJECT BUILD · 2026-08-07 · V8
+COMPLETE SUBJECT BUILD · 2026-08-07 · V9
 ```
 
 ## Windows
@@ -33,11 +33,7 @@ COMPLETE SUBJECT BUILD · 2026-08-07 · V8
 ## Mac
 
 1. Extract the ZIP completely.
-2. Open the extracted folder.
-3. Right-click `Start_OPOlogy_COMPLETE_Mac.command` and choose **Open**.
-4. Confirm the address is `http://127.0.0.1:9012`.
-
-If macOS blocks the launcher, open Terminal in this folder and run:
+ open Terminal in this folder and run:
 
 ```bash
 python3 opology_server.py --port 9012 --open
